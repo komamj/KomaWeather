@@ -15,7 +15,7 @@
  */
 package com.koma.weather.data.source;
 
-import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.local.WeatherLocalDataSource;
 import com.koma.weather.data.source.remote.WeatherRemoteDataSource;
 
@@ -42,7 +42,7 @@ public class WeatherRepository implements WeatherDataSource {
     }
 
     @Override
-    public Flowable<HeWeather> getWeather(String city) {
+    public Flowable<Weather> getWeather(String city) {
         return mRemoteDataSource.getWeather(city);
     }
 }

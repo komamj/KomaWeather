@@ -15,80 +15,124 @@
  */
 package com.koma.weather.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+
 import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by koma on 7/20/17.
  */
 
+@Entity(nameInDb = "alarms")
 public class WarningInfo implements Serializable {
+    private static final long serialVersionUID = 7523967970034938917L;
+    @Id(autoincrement = true)
+    private Long id;
     /**
      * warning level
      */
-    private String mLevel;
+    @Property(nameInDb = "level")
+    @SerializedName("level")
+    private String level;
     /**
      * warning status
      */
-    private String mStatus;
+    @Property(nameInDb = "stat")
+    @SerializedName("stat")
+    private String status;
     /**
      * warning title
      */
-    private String mTitle;
+    @Property(nameInDb = "title")
+    @SerializedName("title")
+    private String title;
     /**
      * warning details
      */
-    private String mDescription;
+    @Property(nameInDb = "txt")
+    @SerializedName("txt")
+    private String description;
     /**
      * warning type
      */
-    private String mType;
+    @Property(nameInDb = "type")
+    @SerializedName("type")
+    private String type;
 
-    public void setLevel(String level) {
-        this.mLevel = level;
+    @Generated(hash = 202920188)
+    public WarningInfo(Long id, String level, String status, String title, String description,
+            String type) {
+        this.id = id;
+        this.level = level;
+        this.status = status;
+        this.title = title;
+        this.description = description;
+        this.type = type;
     }
 
-    public String getLevel() {
-        return this.mLevel;
-    }
-
-    public void setStatus(String status) {
-        this.mStatus = status;
-    }
-
-    public String getStatus() {
-        return this.mStatus;
-    }
-
-    public void setTitle(String title) {
-        this.mTitle = title;
-    }
-
-    public String getTitle() {
-        return this.mTitle;
-    }
-
-    public void setDescription(String description) {
-        this.mDescription = description;
-    }
-
-    public String getDescription() {
-        return this.mDescription;
-    }
-
-    public void setType(String type) {
-        this.mType = type;
-    }
-
-    public String getType() {
-        return this.mType;
+    @Generated(hash = 1235338532)
+    public WarningInfo() {
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("level :").append(this.mLevel).append(",status :").append(this.mStatus)
-                .append("title :").append(this.mTitle).append(",description :").append(this.mDescription)
-                .append(",type :").append(this.mType);
+        builder.append("level :").append(this.level).append(",status :").append(this.status)
+                .append("title :").append(this.title).append(",description :").append(this.description)
+                .append(",type :").append(this.type);
         return builder.toString();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLevel() {
+        return this.level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

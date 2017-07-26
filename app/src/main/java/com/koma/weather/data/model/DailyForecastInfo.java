@@ -16,129 +16,274 @@
 package com.koma.weather.data.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.koma.weather.util.DailyForcastConditionConverter;
+import com.koma.weather.util.TemperatureConverter;
+import com.koma.weather.util.WindInfoConverter;
+
+import org.greenrobot.greendao.annotation.Convert;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
 
 import java.io.Serializable;
 
 /**
  * Created by koma on 7/19/17.
  */
-
+@Entity(nameInDb = "daily_forcast")
 public class DailyForecastInfo implements Serializable {
-    /**
-     * weather situation
-     */
-    @SerializedName("cond")
-    private WeatherConditionInfo mConditionInfo;
-    /**
-     * date
-     */
-    @SerializedName("date")
-    private String mDate;
+    private static final long serialVersionUID = 7523967970034938906L;
+    @Id(autoincrement = true)
+    private Long id;
     /**
      * relative humidity
      */
+    @Property(nameInDb = "hum")
     @SerializedName("hum")
-    public String mHumidity;
+    public String humidity;
     /**
      * precipitation
      */
+    @Property(nameInDb = "pcpn")
     @SerializedName("pcpn")
     public String mPrecipitation;
     /**
      * precipitation probability
      */
+    @Property(nameInDb = "pop")
     @SerializedName("pop")
     public String mPcpnProbability;
     /**
      * air pressure
      */
+    @Property(nameInDb = "press")
     @SerializedName("pres")
     public String mAirPressure;
     /**
      * temperature
      */
+    @Convert(converter = TemperatureConverter.class, columnType = String.class)
     @SerializedName("tmp")
     public TemperatureInfo mTemperatureInfo;
     /**
+     * weather situation
+     */
+    @Convert(converter = DailyForcastConditionConverter.class, columnType = String.class)
+    @SerializedName("cond")
+    private DailyForecastCondition mConditionInfo;
+    /**
+     * date
+     */
+    @Property(nameInDb = "date")
+    @SerializedName("date")
+    private String mDate;
+    /**
      * visibility
      */
+    @Property(nameInDb = "vis")
     @SerializedName("vis")
     private String mVisibility;
     /**
      * wind info
      */
+    @Convert(converter = WindInfoConverter.class, columnType = String.class)
     @SerializedName("wind")
     private WindInfo mWindInfo;
 
-    public void setConditionInfo(WeatherConditionInfo conditionInfo) {
-        this.mConditionInfo = conditionInfo;
+    @Generated(hash = 810926863)
+    public DailyForecastInfo(Long id, String humidity, String mPrecipitation,
+            String mPcpnProbability, String mAirPressure, TemperatureInfo mTemperatureInfo,
+            DailyForecastCondition mConditionInfo, String mDate, String mVisibility,
+            WindInfo mWindInfo) {
+        this.id = id;
+        this.humidity = humidity;
+        this.mPrecipitation = mPrecipitation;
+        this.mPcpnProbability = mPcpnProbability;
+        this.mAirPressure = mAirPressure;
+        this.mTemperatureInfo = mTemperatureInfo;
+        this.mConditionInfo = mConditionInfo;
+        this.mDate = mDate;
+        this.mVisibility = mVisibility;
+        this.mWindInfo = mWindInfo;
     }
 
-    public WeatherConditionInfo getConditionInfo() {
-        return this.mConditionInfo;
+    @Generated(hash = 315318944)
+    public DailyForecastInfo() {
     }
 
-    public void setDate(String date) {
-        this.mDate = date;
+    public Long getId() {
+        return this.id;
     }
 
-    public String getDate() {
-        return this.mDate;
-    }
-
-    public void setHumidity(String humidity) {
-        this.mHumidity = humidity;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getHumidity() {
-        return this.mHumidity;
+        return this.humidity;
     }
 
-    public void setPrecipitation(String precipitation) {
-        this.mPrecipitation = precipitation;
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
     }
 
-    public String getPrecipitation() {
+    public String getMPrecipitation() {
         return this.mPrecipitation;
     }
 
-    public void setPcpnProbability(String pcpnProbability) {
-        this.mPcpnProbability = pcpnProbability;
+    public void setMPrecipitation(String mPrecipitation) {
+        this.mPrecipitation = mPrecipitation;
     }
 
-    public String getPcpnProbability() {
+    public String getMPcpnProbability() {
         return this.mPcpnProbability;
     }
 
-    public void setAirPressure(String airPressure) {
-        this.mAirPressure = airPressure;
+    public void setMPcpnProbability(String mPcpnProbability) {
+        this.mPcpnProbability = mPcpnProbability;
     }
 
-    public String getAirPressure() {
+    public String getMAirPressure() {
         return this.mAirPressure;
     }
 
-    public void setTemperatureInfo(TemperatureInfo temperatureInfo) {
-        this.mTemperatureInfo = temperatureInfo;
+    public void setMAirPressure(String mAirPressure) {
+        this.mAirPressure = mAirPressure;
     }
 
-    public TemperatureInfo getTemperatureInfo() {
+    public TemperatureInfo getMTemperatureInfo() {
         return this.mTemperatureInfo;
     }
 
-    public void setVisibility(String visibility) {
-        this.mVisibility = visibility;
+    public void setMTemperatureInfo(TemperatureInfo mTemperatureInfo) {
+        this.mTemperatureInfo = mTemperatureInfo;
     }
 
-    public String getVisibility() {
+    public DailyForecastCondition getMConditionInfo() {
+        return this.mConditionInfo;
+    }
+
+    public void setMConditionInfo(DailyForecastCondition mConditionInfo) {
+        this.mConditionInfo = mConditionInfo;
+    }
+
+    public String getMDate() {
+        return this.mDate;
+    }
+
+    public void setMDate(String mDate) {
+        this.mDate = mDate;
+    }
+
+    public String getMVisibility() {
         return this.mVisibility;
     }
 
-    public void setWindInfo(WindInfo windInfo) {
-        this.mWindInfo = windInfo;
+    public void setMVisibility(String mVisibility) {
+        this.mVisibility = mVisibility;
     }
 
-    public WindInfo getWindInfo() {
+    public WindInfo getMWindInfo() {
         return this.mWindInfo;
+    }
+
+    public void setMWindInfo(WindInfo mWindInfo) {
+        this.mWindInfo = mWindInfo;
+    }
+
+    public static class DailyForecastCondition implements Serializable {
+        private static final long serialVersionUID = 7523967970034938921L;
+        /**
+         * weather code for day
+         */
+        @SerializedName("code_d")
+        private String mCodeDay;
+        /**
+         * weather code for night
+         */
+        @SerializedName("code_n")
+        private String mCodeNight;
+        /**
+         * weather description for day
+         */
+        @SerializedName("txt_d")
+        private String mDescriptionDay;
+        /**
+         * weather description for night
+         */
+        @SerializedName("txt_n")
+        private String mDescriptionNight;
+
+        public String getCodeDay() {
+            return this.mCodeDay;
+        }
+
+        public void setCodeDay(String codeDay) {
+            this.mCodeDay = codeDay;
+        }
+
+        public String getCodeNight() {
+            return this.mCodeNight;
+        }
+
+        public void setCodeNight(String codeNight) {
+            this.mCodeNight = codeNight;
+        }
+
+        public String getDescriptionDay() {
+            return this.mDescriptionDay;
+        }
+
+        public void setDescriptionDay(String description) {
+            this.mDescriptionDay = description;
+        }
+
+        public String getDescriptionNight() {
+            return this.mDescriptionNight;
+        }
+
+        public void setDescriptionNight(String description) {
+            this.mDescriptionNight = description;
+        }
+    }
+
+    public static class TemperatureInfo implements Serializable {
+        private static final long serialVersionUID = 7523967970034938913L;
+        /**
+         * max temperature
+         */
+        @SerializedName("max")
+        private String mMaxTemperature;
+        /**
+         * min temperature
+         */
+        @SerializedName("min")
+        private String mMinTemperature;
+
+        public String getMaxTemperature() {
+            return this.mMaxTemperature;
+        }
+
+        public void setMaxTemperature(String temperature) {
+            this.mMaxTemperature = temperature;
+        }
+
+        public String getMinTemperature() {
+            return this.mMinTemperature;
+        }
+
+        public void setMinTemperature(String temperature) {
+            this.mMinTemperature = temperature;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("temperature max :").append(this.mMaxTemperature)
+                    .append(",min :").append(this.mMinTemperature);
+
+            return builder.toString();
+        }
     }
 }

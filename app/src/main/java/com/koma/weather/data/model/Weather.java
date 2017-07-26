@@ -24,7 +24,8 @@ import java.util.List;
  * Created by koma on 7/18/17.
  */
 
-public final class Weather implements Serializable {
+public class Weather implements Serializable {
+    private static final long serialVersionUID = 7523967970034938918L;
     /**
      * warning info
      **/
@@ -66,68 +67,68 @@ public final class Weather implements Serializable {
     @SerializedName("suggestion")
     private SuggestionInfo mSuggerstionInfo;
 
-    public void setWarningInfo(List<WarningInfo> warningInfo) {
-        this.mWaringInfo = warningInfo;
-    }
-
     public List<WarningInfo> getWarningInfo() {
         return this.mWaringInfo;
     }
 
-    public void setAqiInfo(AqiInfo aqiInfo) {
-        this.mAqiInfo = aqiInfo;
+    public void setWarningInfo(List<WarningInfo> warningInfo) {
+        this.mWaringInfo = warningInfo;
     }
 
     public AqiInfo getAqiInfo() {
         return this.mAqiInfo;
     }
 
-    public void setBasicInfo(BasicInfo basicInfo) {
-        this.mBasicInfo = basicInfo;
+    public void setAqiInfo(AqiInfo aqiInfo) {
+        this.mAqiInfo = aqiInfo;
     }
 
     public BasicInfo getBasicInfo() {
         return this.mBasicInfo;
     }
 
-    public void setDailyForecastInfo(List<DailyForecastInfo> dailyForecastInfo) {
-        this.mDailyForecastInfo = dailyForecastInfo;
+    public void setBasicInfo(BasicInfo basicInfo) {
+        this.mBasicInfo = basicInfo;
     }
 
     public List<DailyForecastInfo> getDailyForecastInfo() {
         return this.mDailyForecastInfo;
     }
 
-    public void setHourlyForecastInfo(List<HourlyForecastInfo> hourlyForecastInfo) {
-        this.mHourlyForecastInfo = hourlyForecastInfo;
+    public void setDailyForecastInfo(List<DailyForecastInfo> dailyForecastInfo) {
+        this.mDailyForecastInfo = dailyForecastInfo;
     }
 
     public List<HourlyForecastInfo> getHourlyForecastInfo() {
         return this.mHourlyForecastInfo;
     }
 
-    public void setNowInfo(NowInfo nowInfo) {
-        this.mNowInfo = nowInfo;
+    public void setHourlyForecastInfo(List<HourlyForecastInfo> hourlyForecastInfo) {
+        this.mHourlyForecastInfo = hourlyForecastInfo;
     }
 
     public NowInfo getNowInfo() {
         return this.mNowInfo;
     }
 
-    public void setStatus(String status) {
-        this.mStatus = status;
+    public void setNowInfo(NowInfo nowInfo) {
+        this.mNowInfo = nowInfo;
     }
 
     public String getStatus() {
         return this.mStatus;
     }
 
-    public void setSuggerstionInfo(SuggestionInfo suggerstionInfo) {
-        this.mSuggerstionInfo = suggerstionInfo;
+    public void setStatus(String status) {
+        this.mStatus = status;
     }
 
     public SuggestionInfo getSuggerstionInfo() {
         return this.mSuggerstionInfo;
+    }
+
+    public void setSuggerstionInfo(SuggestionInfo suggerstionInfo) {
+        this.mSuggerstionInfo = suggerstionInfo;
     }
 
     @Override

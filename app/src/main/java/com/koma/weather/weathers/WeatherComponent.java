@@ -11,5 +11,5 @@ import dagger.Component;
 @FragmentScoped
 @Component(dependencies = WeatherRepositoryComponent.class, modules = WeatherPresenterModule.class)
 public interface WeatherComponent {
-    void inject(WeatherActivity activity);
+    void inject(WeatherFragment weatherFragment);
 }

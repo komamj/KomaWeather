@@ -17,35 +17,56 @@ package com.koma.weather.weathers;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.koma.weather.R;
-import com.koma.weather.WeatherApplication;
 import com.koma.weather.base.BasePermissionActivity;
-import com.koma.weather.util.ActivityUtils;
+import com.koma.weather.util.LogUtils;
+import com.koma.weather.widget.CirclePageIndicator;
 import com.umeng.analytics.MobclickAgent;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class WeatherActivity extends BasePermissionActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class WeatherActivity extends BasePermissionActivity implements
+        NavigationView.OnNavigationItemSelectedListener, AppBarLayout.OnOffsetChangedListener {
+    private static final String TAG = WeatherActivity.class.getSimpleName();
+
+    @BindView(R.id.app_bar)
+    AppBarLayout mAppbar;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.tv_city_name)
+    TextView mCityName;
+    @BindView(R.id.tv_update_info)
+    TextView mUpdateInfo;
+    @BindView(R.id.tv_temperature)
+    TextView mTemperature;
+    @BindView(R.id.circle_page_indicator)
+    CirclePageIndicator mIndicator;
+    @BindView(R.id.toolbar_layout)
+    CollapsingToolbarLayout mToolbarLayout;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.nav_view)
     NavigationView mNavgationView;
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
 
     @OnClick(R.id.fab)
     void showSnackbar(View view) {
@@ -53,16 +74,15 @@ public class WeatherActivity extends BasePermissionActivity
                 .setAction("Action", null).show();
     }
 
-    @Inject
-    WeatherPresenter mPresenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setSupportActionBar(mToolbar);
+        LogUtils.i(TAG, "onCreate");
 
         mToolbar.setTitle("");
+
+        setSupportActionBar(mToolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -70,6 +90,7 @@ public class WeatherActivity extends BasePermissionActivity
         toggle.syncState();
 
         mNavgationView.setNavigationItemSelectedListener(this);
+        mAppbar.addOnOffsetChangedListener(this);
     }
 
     @Override
@@ -82,20 +103,12 @@ public class WeatherActivity extends BasePermissionActivity
 
     @Override
     public void onPermissonGranted() {
-        WeatherFragment weatherFragment = (WeatherFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.content_main);
+        WeatherFragmentPagerAdapter adapter = new WeatherFragmentPagerAdapter(getSupportFragmentManager());
 
-        if (weatherFragment == null) {
-            weatherFragment = WeatherFragment.newInstance("深圳");
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), weatherFragment,
-                    R.id.content_main);
-        }
+        mViewPager.setAdapter(adapter);
 
-        DaggerWeatherComponent.builder()
-                .weatherRepositoryComponent(
-                        ((WeatherApplication) getApplication()).getWeatherRepositoryComponent())
-                .weatherPresenterModule(new WeatherPresenterModule(weatherFragment))
-                .build().inject(this);
+        mIndicator.setViewPager(mViewPager);
+        mIndicator.setCurrentItem(0);
     }
 
     @Override
@@ -172,5 +185,30 @@ public class WeatherActivity extends BasePermissionActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        LogUtils.i(TAG, "onOffsetChanged verticalOffset : " + verticalOffset);
+        int maxScroll = appBarLayout.getTotalScrollRange();
+        float offsetPercent = (float) Math.abs(verticalOffset) / (float) maxScroll;
+        mTemperature.setAlpha(1 - offsetPercent);
+    }
+
+    private class WeatherFragmentPagerAdapter extends FragmentPagerAdapter {
+        public WeatherFragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            WeatherFragment weatherFragment = WeatherFragment.newInstance("深圳");
+            return weatherFragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
     }
 }

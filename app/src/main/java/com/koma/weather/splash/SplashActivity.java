@@ -18,9 +18,9 @@ package com.koma.weather.splash;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.koma.weather.weathers.WeatherActivity;
 import com.koma.weather.R;
 import com.koma.weather.base.BaseActivity;
+import com.koma.weather.weathers.WeatherActivity;
 
 import java.util.concurrent.TimeUnit;
 

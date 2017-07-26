@@ -15,7 +15,7 @@
  */
 package com.koma.weather.data.source;
 
-import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 
 import io.reactivex.Flowable;
 
@@ -24,5 +24,5 @@ import io.reactivex.Flowable;
  */
 
 public interface WeatherDataSource {
-    Flowable<HeWeather> getWeather(String city);
+    Flowable<Weather> getWeather(String city);
 }

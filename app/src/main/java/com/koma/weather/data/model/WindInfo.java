@@ -1,14 +1,32 @@
+/*
+ * Copyright 2017 Koma
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.koma.weather.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+
 import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by koma on 7/19/17.
  */
-
 public class WindInfo implements Serializable {
+    private static final long serialVersionUID = 7523967970034938920L;
     /**
      * the degree of wind direction
      */
@@ -30,28 +48,39 @@ public class WindInfo implements Serializable {
     @SerializedName("spd")
     private String mWindSpeed;
 
-    public void setWindDegree(String windDegree) {
-        this.mWindDegree = windDegree;
+    public WindInfo(String mWindDegree, String mWindDirection, String mWindPower,
+            String mWindSpeed) {
+        this.mWindDegree = mWindDegree;
+        this.mWindDirection = mWindDirection;
+        this.mWindPower = mWindPower;
+        this.mWindSpeed = mWindSpeed;
+    }
+
+    public WindInfo() {
     }
 
     public String getWindDegree() {
         return this.mWindDegree;
     }
 
-    public void setWindDirection(String windDirection) {
-        this.mWindDirection = windDirection;
+    public void setWindDegree(String windDegree) {
+        this.mWindDegree = windDegree;
     }
 
     public String getWindDirection() {
         return this.mWindDirection;
     }
 
-    public void setWindPower(String windPower) {
-        this.mWindPower = windPower;
+    public void setWindDirection(String windDirection) {
+        this.mWindDirection = windDirection;
     }
 
     public String getWindPower() {
         return this.mWindPower;
+    }
+
+    public void setWindPower(String windPower) {
+        this.mWindPower = windPower;
     }
 
     public void setWindSepeed(String windSepeed) {

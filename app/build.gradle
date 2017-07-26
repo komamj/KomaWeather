@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'org.greenrobot.greendao'
+
 def static releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
@@ -87,6 +89,11 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    greendao {
+        schemaVersion 1000
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {
@@ -117,6 +124,8 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
     compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit_version"
+
+    compile "org.greenrobot:greendao:$rootProject.ext.greendao_version"
 
     compile 'com.umeng.analytics:analytics:latest.integration'
     //leakcanary

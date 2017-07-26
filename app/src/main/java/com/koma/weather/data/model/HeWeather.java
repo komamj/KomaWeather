@@ -26,15 +26,16 @@ import java.util.List;
  */
 
 public class HeWeather implements Serializable {
+    private static final long serialVersionUID = 7523967970034938908L;
     @SerializedName("HeWeather5")
     @Expose
     private List<Weather> mWeathers;
 
-    public void setWeather(List<Weather> weathers) {
-        this.mWeathers = weathers;
-    }
-
     public List<Weather> getWeather() {
         return this.mWeathers;
+    }
+
+    public void setWeather(List<Weather> weathers) {
+        this.mWeathers = weathers;
     }
 }

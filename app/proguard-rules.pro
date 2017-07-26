@@ -66,3 +66,9 @@
 -keepattributes Exceptions
 -dontwarn okio.**
 -dontwarn javax.annotation.**
+
+### greenDAO 3
+-keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+public static java.lang.String TABLENAME;
+}
+-keep class **$Properties

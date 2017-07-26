@@ -16,6 +16,7 @@
 package com.koma.weather.weathers;
 
 import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.WeatherRepository;
 import com.koma.weather.util.LogUtils;
 
@@ -69,19 +70,22 @@ public class WeatherPresenter implements WeatherContract.Presenter {
         Disposable disposable = mRepository.getWeather(mView.getCity())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<HeWeather>() {
+                .subscribeWith(new DisposableSubscriber<Weather>() {
                     @Override
-                    public void onNext(HeWeather heWeather) {
+                    public void onNext(Weather weather) {
                         LogUtils.i(TAG, "onNext");
                         if (mView.isActive()) {
                             mView.setLoadingIndicator(false);
-                            mView.showWeather(heWeather);
+                            mView.showWeather(weather);
                         }
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         LogUtils.e(TAG, "loadWeather error : " + t.toString());
+                        if(mView!= null){
+                            mView.setLoadingIndicator(false);
+                        }
                     }
 
                     @Override

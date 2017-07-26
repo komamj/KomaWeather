@@ -16,131 +16,177 @@
 package com.koma.weather.data.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.koma.weather.util.WindInfoConverter;
+
+import org.greenrobot.greendao.annotation.Convert;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Transient;
 
 import java.io.Serializable;
 
 /**
  * Created by koma on 7/19/17.
  */
-
+@Entity(nameInDb = "now_info")
 public class NowInfo implements Serializable {
+    private static final long serialVersionUID = 7523967970034938910L;
+    @Id(autoincrement = true)
+    private Long id;
+
     /**
      * weather condition info
      */
+    @Transient
     @SerializedName("cond")
-    private WeatherConditionInfo mConditionInfo;
+    private ConditionInfo conditionInfo;
     /**
      * sendible temperature
      */
+    @Property(nameInDb = "fl")
     @SerializedName("fl")
-    private String mSendibleTemp;
+    private String sendibleTemp;
     /**
      * relative humidity
      */
+    @Property(nameInDb = "hum")
     @SerializedName("hum")
-    private String mHumidity;
+    private String humidity;
     /**
      * amount of precipitation
      */
+    @Property(nameInDb = "pcpn")
     @SerializedName("pcpn")
-    private String mPrecipitation;
+    private String precipitation;
     /**
      * air pressure
      */
+    @Property(nameInDb = "pres")
     @SerializedName("pres")
-    private String mAirPressure;
+    private String airPressure;
     /**
      * temperature
      */
+    @Property(nameInDb = "tmp")
     @SerializedName("tmp")
-    private String mTemperature;
+    private String temperature;
     /**
      * visibility
      */
+    @Property(nameInDb = "vis")
     @SerializedName("vis")
     private String mVisibility;
     /**
      * wind info
      */
+    @Convert(converter = WindInfoConverter.class, columnType = String.class)
     @SerializedName("wind")
     private WindInfo mWindInfo;
 
-    public void setConditionInfo(WeatherConditionInfo conditionInfo) {
-        this.mConditionInfo = conditionInfo;
+    @Generated(hash = 333988543)
+    public NowInfo(Long id, String sendibleTemp, String humidity,
+                   String precipitation, String airPressure, String temperature,
+                   String mVisibility, WindInfo mWindInfo) {
+        this.id = id;
+        this.sendibleTemp = sendibleTemp;
+        this.humidity = humidity;
+        this.precipitation = precipitation;
+        this.airPressure = airPressure;
+        this.temperature = temperature;
+        this.mVisibility = mVisibility;
+        this.mWindInfo = mWindInfo;
     }
 
-    public WeatherConditionInfo getConditionInfo() {
-        return mConditionInfo;
-    }
-
-    public void setSendibleTemp(String temperature) {
-        this.mSendibleTemp = temperature;
-    }
-
-    public String getSendibleTemp() {
-        return this.mSendibleTemp;
-    }
-
-    public void setHumidity(String humidity) {
-        this.mHumidity = humidity;
-    }
-
-    public String getHumidity() {
-        return this.mHumidity;
-    }
-
-    public void setPrecipitation(String precipitation) {
-        this.mPrecipitation = precipitation;
-    }
-
-    public String getPrecipitation() {
-        return this.mPrecipitation;
-    }
-
-    public void setAirPressure(String airPressure) {
-        this.mAirPressure = airPressure;
-    }
-
-    public String getAirPressure() {
-        return this.mAirPressure;
-    }
-
-    public void setTemperature(String temperature) {
-        this.mTemperature = temperature;
-    }
-
-    public String getTemperature() {
-        return this.mTemperature;
-    }
-
-    public void setVisibility(String visibility) {
-        this.mVisibility = visibility;
-    }
-
-    public String getVisibility() {
-        return this.mVisibility;
-    }
-
-    public void setWindInfo(WindInfo windInfo) {
-        this.mWindInfo = windInfo;
-    }
-
-    public WindInfo getWindInfo() {
-        return this.mWindInfo;
+    @Generated(hash = 289332803)
+    public NowInfo() {
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("cond :").append(this.mConditionInfo.toString())
-                .append(",fl :").append(this.mSendibleTemp)
-                .append(",hum :").append(this.mHumidity)
-                .append(",pcpn :").append(this.mPrecipitation)
-                .append(",pres :").append(this.mAirPressure)
-                .append(",temp :").append(this.mTemperature)
+        builder.append("cond :").append(this.conditionInfo.toString())
+                .append(",fl :").append(this.sendibleTemp)
+                .append(",hum :").append(this.humidity)
+                .append(",pcpn :").append(this.precipitation)
+                .append(",pres :").append(this.airPressure)
+                .append(",temp :").append(this.temperature)
                 .append(",vis :").append(this.mVisibility)
                 .append(",wind :").append(this.mWindInfo.toString());
 
         return builder.toString();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSendibleTemp() {
+        return this.sendibleTemp;
+    }
+
+    public void setSendibleTemp(String sendibleTemp) {
+        this.sendibleTemp = sendibleTemp;
+    }
+
+    public String getHumidity() {
+        return this.humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getPrecipitation() {
+        return this.precipitation;
+    }
+
+    public void setPrecipitation(String precipitation) {
+        this.precipitation = precipitation;
+    }
+
+    public String getAirPressure() {
+        return this.airPressure;
+    }
+
+    public void setAirPressure(String airPressure) {
+        this.airPressure = airPressure;
+    }
+
+    public String getTemperature() {
+        return this.temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
+    public String getMVisibility() {
+        return this.mVisibility;
+    }
+
+    public void setMVisibility(String mVisibility) {
+        this.mVisibility = mVisibility;
+    }
+
+    public WindInfo getMWindInfo() {
+        return this.mWindInfo;
+    }
+
+    public void setMWindInfo(WindInfo mWindInfo) {
+        this.mWindInfo = mWindInfo;
+    }
+
+    public void setConditionInfo(ConditionInfo conditionInfo) {
+        this.conditionInfo = conditionInfo;
+    }
+
+    public ConditionInfo getConditionInfo() {
+        return this.conditionInfo;
     }
 }

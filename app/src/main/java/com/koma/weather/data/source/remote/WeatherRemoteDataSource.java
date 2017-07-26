@@ -16,6 +16,7 @@
 package com.koma.weather.data.source.remote;
 
 import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.WeatherApi;
 import com.koma.weather.data.source.WeatherDataSource;
 import com.koma.weather.util.Constants;
@@ -25,6 +26,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 
 /**
  * Created by koma on 7/18/17.
@@ -41,9 +45,20 @@ public class WeatherRemoteDataSource implements WeatherDataSource {
     }
 
     @Override
-    public Flowable<HeWeather> getWeather(String city) {
+    public Flowable<Weather> getWeather(final String city) {
         LogUtils.i(TAG, "getWeather city : " + city);
 
-        return mWeatherApi.getWeather(city, Constants.API_KEY);
+        return mWeatherApi.getWeather(city, Constants.API_KEY)
+                .flatMap(new Function<HeWeather, Flowable<Weather>>() {
+                    @Override
+                    public Flowable<Weather> apply(@NonNull HeWeather weather) throws Exception {
+                        return Flowable.just(weather.getWeather().get(0));
+                    }
+                }).filter(new Predicate<Weather>() {
+                    @Override
+                    public boolean test(@NonNull Weather weather) throws Exception {
+                        return weather.getStatus().equals("ok");
+                    }
+                });
     }
 }

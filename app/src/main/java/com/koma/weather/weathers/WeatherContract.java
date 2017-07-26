@@ -17,7 +17,7 @@ package com.koma.weather.weathers;
 
 import com.koma.weather.base.BasePresenter;
 import com.koma.weather.base.BaseView;
-import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 
 /**
  * Created by koma on 7/21/17.
@@ -27,13 +27,15 @@ public interface WeatherContract {
     interface View extends BaseView<Presenter> {
         void setLoadingIndicator(boolean active);
 
-        void showWeather(HeWeather weather);
+        void showWeather(Weather weather);
 
         boolean isActive();
 
         String getCity();
 
         void showSuccessfullyLoadedMessage();
+
+        void showLoadingWeatherError();
     }
 
     interface Presenter extends BasePresenter {

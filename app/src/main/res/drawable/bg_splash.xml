@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list></layer-list>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="270.0"
+                android:centerColor="#FF235BA1"
+                android:endColor="#FF213F75"
+                android:startColor="#FF2679D0" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_weather"
+        android:gravity="center" />
+</layer-list>

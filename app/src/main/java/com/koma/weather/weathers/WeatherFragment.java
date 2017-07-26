@@ -24,10 +24,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.koma.weather.R;
+import com.koma.weather.WeatherApplication;
 import com.koma.weather.base.BaseFragment;
-import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.LogUtils;
 import com.koma.weather.widget.ScrollChildSwipeRefreshLayout;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -36,19 +39,16 @@ import butterknife.BindView;
  */
 
 public class WeatherFragment extends BaseFragment implements WeatherContract.View {
-    private static final String TAG = WeatherFragment.class.getSimpleName();
-
     public static final String CITY = "city";
-    @BindView(R.id.recycler_view_hourly)
-    RecyclerView mRecyclerViewHourly;
-    @BindView(R.id.recycler_view_detail)
-    RecyclerView mRecyclerViewDetail;
+    private static final String TAG = WeatherFragment.class.getSimpleName();
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     ScrollChildSwipeRefreshLayout mRefreshLayout;
+    @Inject
+    WeatherPresenter mPresenter;
 
-    private WeatherContract.Presenter mPresenter;
-
-    private HourlyForecastAdapter mHourlyAdapter;
+    private WeatherAdapter mAdapter;
 
     public static WeatherFragment newInstance() {
         return new WeatherFragment();
@@ -70,7 +70,13 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
         LogUtils.i(TAG, "onCreate");
 
-        mHourlyAdapter = new HourlyForecastAdapter(mContext);
+        mAdapter = new WeatherAdapter(mContext);
+
+        DaggerWeatherComponent.builder()
+                .weatherRepositoryComponent(
+                        ((WeatherApplication) getActivity().getApplication()).getWeatherRepositoryComponent())
+                .weatherPresenterModule(new WeatherPresenterModule(this))
+                .build().inject(this);
     }
 
     @Override
@@ -79,7 +85,7 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
         LogUtils.i(TAG, "onViewCreated");
 
-        mRefreshLayout.setScrollUpChild(mRecyclerViewDetail);
+        mRefreshLayout.setScrollUpChild(mRecyclerView);
         mRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getActivity(), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorAccent),
@@ -92,11 +98,11 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
             }
         });
 
-        mRecyclerViewHourly.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRecyclerViewHourly.setLayoutManager(layoutManager);
-        mRecyclerViewHourly.setAdapter(mHourlyAdapter);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -112,7 +118,9 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
         LogUtils.i(TAG, "onResume");
 
-        mPresenter.subscribe();
+        if (mPresenter != null) {
+            mPresenter.subscribe();
+        }
     }
 
     @Override
@@ -121,7 +129,9 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
         LogUtils.i(TAG, "onPause");
 
-        mPresenter.unSubscribe();
+        if (mPresenter != null) {
+            mPresenter.unSubscribe();
+        }
     }
 
     @Override
@@ -131,7 +141,6 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
     @Override
     public void setPresenter(@NonNull WeatherContract.Presenter presenter) {
-        mPresenter = presenter;
     }
 
     @Override
@@ -146,10 +155,12 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
     }
 
     @Override
-    public void showWeather(HeWeather weather) {
-        LogUtils.i(TAG, "showWeather");
+    public void showWeather(Weather weather) {
+        LogUtils.i(TAG, "showWeather : " + weather.getStatus());
 
-        mHourlyAdapter.replaceData(weather);
+        if(mAdapter != null){
+            mAdapter.replaceData(weather);
+        }
     }
 
     @Override
@@ -168,6 +179,11 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
     @Override
     public void showSuccessfullyLoadedMessage() {
+
+    }
+
+    @Override
+    public void showLoadingWeatherError() {
 
     }
 }

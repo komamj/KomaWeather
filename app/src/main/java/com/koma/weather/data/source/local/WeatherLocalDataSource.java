@@ -17,7 +17,9 @@ package com.koma.weather.data.source.local;
 
 import android.content.Context;
 
-import com.koma.weather.data.model.HeWeather;
+import com.koma.weather.data.model.BasicInfoDao;
+import com.koma.weather.data.model.DaoSession;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.WeatherDataSource;
 
 import javax.inject.Inject;
@@ -32,15 +34,20 @@ import io.reactivex.Flowable;
 public class WeatherLocalDataSource implements WeatherDataSource {
     private static final String TAG = WeatherLocalDataSource.class.getSimpleName();
 
-    private Context mContext;
+    private final Context mContext;
+
+    private final DaoSession mDaoSession;
 
     @Inject
-    public WeatherLocalDataSource(Context context) {
+    public WeatherLocalDataSource(Context context, DaoSession daoSession) {
         mContext = context;
+
+        mDaoSession = daoSession;
     }
 
     @Override
-    public Flowable<HeWeather> getWeather(String city) {
+    public Flowable<Weather> getWeather(String city) {
+        mDaoSession.getBasicInfoDao().queryBuilder().where(BasicInfoDao.Properties.CityName.eq(city)).build();
         return null;
     }
 }
