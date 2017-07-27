@@ -13,18 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.koma.weather.data.source;
+package com.koma.weather.main;
 
-import com.koma.weather.data.model.Weather;
-
-import io.reactivex.Flowable;
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * Created by koma on 7/18/17.
+ * Created by koma on 7/27/17.
  */
+@Module
+public class MainPresenterModule {
+    private final MainContract.View mView;
 
-public interface WeatherDataSource {
-    Flowable<Weather> getWeather(String city);
+    public MainPresenterModule(MainContract.View view) {
+        mView = view;
+    }
 
-    Flowable<Weather> getNowWeather(String city);
+    @Provides
+    MainContract.View provideMainContractView() {
+        return this.mView;
+    }
 }

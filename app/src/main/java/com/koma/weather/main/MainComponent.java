@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.koma.weather.data.source;
+package com.koma.weather.main;
 
-import com.koma.weather.data.model.Weather;
+import com.koma.weather.data.source.WeatherRepositoryComponent;
+import com.koma.weather.util.ActivityScoped;
 
-import io.reactivex.Flowable;
+import dagger.Component;
 
 /**
- * Created by koma on 7/18/17.
+ * Created by koma on 7/27/17.
  */
-
-public interface WeatherDataSource {
-    Flowable<Weather> getWeather(String city);
-
-    Flowable<Weather> getNowWeather(String city);
+@ActivityScoped
+@Component(dependencies = WeatherRepositoryComponent.class, modules = MainPresenterModule.class)
+public interface MainComponent {
+    void inject(MainActivity mainActivity);
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.koma.weather.weathers;
+package com.koma.weather.main;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -35,17 +35,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.koma.weather.R;
+import com.koma.weather.WeatherApplication;
 import com.koma.weather.base.BasePermissionActivity;
+import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.LogUtils;
+import com.koma.weather.util.Utils;
+import com.koma.weather.weathers.WeatherFragment;
 import com.koma.weather.widget.CirclePageIndicator;
 import com.umeng.analytics.MobclickAgent;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class WeatherActivity extends BasePermissionActivity implements
-        NavigationView.OnNavigationItemSelectedListener, AppBarLayout.OnOffsetChangedListener {
-    private static final String TAG = WeatherActivity.class.getSimpleName();
+public class MainActivity extends BasePermissionActivity implements
+        NavigationView.OnNavigationItemSelectedListener, AppBarLayout.OnOffsetChangedListener,
+        ViewPager.OnPageChangeListener, MainContract.View {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.app_bar)
     AppBarLayout mAppbar;
@@ -67,6 +74,11 @@ public class WeatherActivity extends BasePermissionActivity implements
     NavigationView mNavgationView;
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
+
+    @Inject
+    MainPresenter mPresenter;
+
+    WeatherFragmentPagerAdapter mAdapter;
 
     @OnClick(R.id.fab)
     void showSnackbar(View view) {
@@ -103,9 +115,16 @@ public class WeatherActivity extends BasePermissionActivity implements
 
     @Override
     public void onPermissonGranted() {
-        WeatherFragmentPagerAdapter adapter = new WeatherFragmentPagerAdapter(getSupportFragmentManager());
+        DaggerMainComponent.builder().weatherRepositoryComponent(
+                ((WeatherApplication) getApplication()).getWeatherRepositoryComponent())
+                .mainPresenterModule(new MainPresenterModule(this))
+                .build()
+                .inject(this);
 
-        mViewPager.setAdapter(adapter);
+        mAdapter = new WeatherFragmentPagerAdapter(getSupportFragmentManager());
+
+        mViewPager.addOnPageChangeListener(this);
+        mViewPager.setAdapter(mAdapter);
 
         mIndicator.setViewPager(mViewPager);
         mIndicator.setCurrentItem(0);
@@ -120,14 +139,26 @@ public class WeatherActivity extends BasePermissionActivity implements
     public void onResume() {
         super.onResume();
 
+        LogUtils.i(TAG, "onResume");
+
         MobclickAgent.onResume(this);
+
+        if (mPresenter != null) {
+            mPresenter.subscribe();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
+        LogUtils.i(TAG, "onPause");
+
         MobclickAgent.onPause(this);
+
+        if (mPresenter != null) {
+            mPresenter.unSubscribe();
+        }
     }
 
     @Override
@@ -195,6 +226,47 @@ public class WeatherActivity extends BasePermissionActivity implements
         mTemperature.setAlpha(1 - offsetPercent);
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        LogUtils.i(TAG, "onPageScrolled position : " + position + ",positionOffset : "
+                + positionOffset + ",positionOffsetPixels :" + positionOffsetPixels);
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        LogUtils.i(TAG, "onPageSelected position : " + position);
+
+        mCityName.setText(getCity());
+
+        mPresenter.loadNowWeather();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        LogUtils.i(TAG, "onPageScrollStateChanged state : " + state);
+    }
+
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void showWeather(Weather weather) {
+        LogUtils.i(TAG, "showWeather");
+
+        mCityName.setText(getCity());
+        mTemperature.setText(Utils.formatTemperature(weather.getNowInfo().getTemperature()));
+        mUpdateInfo.setText(weather.getBasicInfo().getUpdateInfo().getTimeLocal());
+    }
+
+    @Override
+    public String getCity() {
+        String city = ((WeatherFragment) mAdapter.getItem(mViewPager.getCurrentItem())).getCity();
+
+        return city;
+    }
+
     private class WeatherFragmentPagerAdapter extends FragmentPagerAdapter {
         public WeatherFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -202,7 +274,16 @@ public class WeatherActivity extends BasePermissionActivity implements
 
         @Override
         public Fragment getItem(int position) {
-            WeatherFragment weatherFragment = WeatherFragment.newInstance("深圳");
+            WeatherFragment weatherFragment = null;
+            if (position == 0) {
+                weatherFragment = WeatherFragment.newInstance("深圳");
+            } else if (position == 1) {
+                weatherFragment = WeatherFragment.newInstance("长沙");
+            } else if (position == 2) {
+                weatherFragment = WeatherFragment.newInstance("成都");
+            } else if (position == 3) {
+                weatherFragment = WeatherFragment.newInstance("重庆");
+            }
             return weatherFragment;
         }
 

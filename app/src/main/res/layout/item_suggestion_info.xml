@@ -290,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_trav"
-                android:text="感冒" />
+                android:text="旅行" />
 
             <TextView
                 android:id="@+id/tv_trav_brf"
@@ -340,7 +340,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_uv"
-                android:text="感冒" />
+                android:text="紫外线" />
 
             <TextView
                 android:id="@+id/tv_uv_brf"

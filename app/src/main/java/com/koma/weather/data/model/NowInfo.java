@@ -166,11 +166,11 @@ public class NowInfo implements Serializable {
         this.temperature = temperature;
     }
 
-    public String getMVisibility() {
+    public String getVisibility() {
         return this.mVisibility;
     }
 
-    public void setMVisibility(String mVisibility) {
+    public void setVisibility(String mVisibility) {
         this.mVisibility = mVisibility;
     }
 
@@ -188,5 +188,13 @@ public class NowInfo implements Serializable {
 
     public ConditionInfo getConditionInfo() {
         return this.conditionInfo;
+    }
+
+    public String getMVisibility() {
+        return this.mVisibility;
+    }
+
+    public void setMVisibility(String mVisibility) {
+        this.mVisibility = mVisibility;
     }
 }

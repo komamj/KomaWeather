@@ -28,4 +28,19 @@ import retrofit2.http.Query;
 public interface WeatherApi {
     @GET("weather")
     Flowable<HeWeather> getWeather(@Query("city") String city, @Query("key") String key);
+
+    @GET("now")
+    Flowable<HeWeather> getNowWeather(@Query("city") String city, @Query("key") String key);
+
+    @GET("alarm")
+    Flowable<HeWeather> getAlarms(@Query("city") String city, @Query("key") String key);
+
+    @GET("forecast")
+    Flowable<HeWeather> getDailyForecast(@Query("city") String city, @Query("key") String key);
+
+    @GET("hourly")
+    Flowable<HeWeather> getHourlyForecast(@Query("city") String city, @Query("key") String key);
+
+    @GET("suggestion")
+    Flowable<HeWeather> getSuggestion(@Query("city") String city, @Query("key") String key);
 }

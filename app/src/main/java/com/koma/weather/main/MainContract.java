@@ -13,18 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.koma.weather.data.source;
+package com.koma.weather.main;
 
+import com.koma.weather.base.BasePresenter;
+import com.koma.weather.base.BaseView;
 import com.koma.weather.data.model.Weather;
 
-import io.reactivex.Flowable;
-
 /**
- * Created by koma on 7/18/17.
+ * Created by koma on 7/27/17.
  */
 
-public interface WeatherDataSource {
-    Flowable<Weather> getWeather(String city);
+public interface MainContract {
+    interface View extends BaseView<Presenter> {
+        void showWeather(Weather weather);
 
-    Flowable<Weather> getNowWeather(String city);
+        String getCity();
+    }
+
+    interface Presenter extends BasePresenter {
+        void loadNowWeather();
+    }
 }

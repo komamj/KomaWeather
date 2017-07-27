@@ -31,4 +31,16 @@ public class Utils {
     public static String formatHumidity(String humidity) {
         return String.format("%s%%", humidity);
     }
+
+    public static String formatAqi(String aqi) {
+        return String.format("%sμg/m³", aqi);
+    }
+
+    public static String formatPcpn(String pcpn) {
+        return String.format("%smm", pcpn);
+    }
+
+    public static String formatVisibility(String visibily) {
+        return String.format("%skm", visibily);
+    }
 }

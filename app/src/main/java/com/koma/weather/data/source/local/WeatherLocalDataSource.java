@@ -50,4 +50,9 @@ public class WeatherLocalDataSource implements WeatherDataSource {
         mDaoSession.getBasicInfoDao().queryBuilder().where(BasicInfoDao.Properties.CityName.eq(city)).build();
         return null;
     }
+
+    @Override
+    public Flowable<Weather> getNowWeather(String city) {
+        return null;
+    }
 }

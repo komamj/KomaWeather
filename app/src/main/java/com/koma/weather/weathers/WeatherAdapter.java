@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.koma.weather.R;
 import com.koma.weather.base.BaseViewHolder;
 import com.koma.weather.data.model.Weather;
+import com.koma.weather.util.Utils;
 
 import butterknife.BindView;
 
@@ -108,10 +109,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (viewType == VIEW_TYPE_NOW_INFO) {
             NowInfoVH nowInfoVH = (NowInfoVH) holder;
             nowInfoVH.mTxt.setText(mData.getNowInfo().getConditionInfo().getDescription());
-            nowInfoVH.mFl.setText(mData.getNowInfo().getSendibleTemp());
-            nowInfoVH.mTemp.setText(mData.getNowInfo().getTemperature());
+            nowInfoVH.mFl.setText(Utils.formatTemperature(mData.getNowInfo().getSendibleTemp()));
+            nowInfoVH.mHum.setText(Utils.formatHumidity(mData.getNowInfo().getHumidity()));
+            nowInfoVH.mTemp.setText(Utils.formatTemperature(mData.getNowInfo().getTemperature()));
+            nowInfoVH.mPcpn.setText(Utils.formatPcpn(mData.getNowInfo().getPrecipitation()));
+            nowInfoVH.mVis.setText(Utils.formatVisibility(mData.getNowInfo().getVisibility()));
         } else if (viewType == VIEW_TYPE_AQI_INFO) {
-
+            AqiInfoVH aqiInfoVH = (AqiInfoVH) holder;
+            aqiInfoVH.mCO.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getCo()));
+            aqiInfoVH.mNO2.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getNo2()));
+            aqiInfoVH.mO3.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getO3()));
+            aqiInfoVH.mPM10.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getPm10()));
+            aqiInfoVH.mPM25.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getPm25()));
+            aqiInfoVH.mSO2.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getSo2()));
         } else if (viewType == VIEW_TYPE_SUGGESTION_INFO) {
             SuggestionVH suggestionVH = (SuggestionVH) holder;
             suggestionVH.mComfBrf.setText(mData.getSuggerstionInfo().getComforInfo().getBriefDescription());
@@ -151,6 +161,18 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     static class AqiInfoVH extends BaseViewHolder {
+        @BindView(R.id.tv_aqi_co)
+        TextView mCO;
+        @BindView(R.id.tv_aqi_no2)
+        TextView mNO2;
+        @BindView(R.id.tv_aqi_o3)
+        TextView mO3;
+        @BindView(R.id.tv_aqi_pm10)
+        TextView mPM10;
+        @BindView(R.id.tv_aqi_pm25)
+        TextView mPM25;
+        @BindView(R.id.tv_aqi_so2)
+        TextView mSO2;
         public AqiInfoVH(View itemView) {
             super(itemView);
         }

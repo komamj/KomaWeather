@@ -45,4 +45,9 @@ public class WeatherRepository implements WeatherDataSource {
     public Flowable<Weather> getWeather(String city) {
         return mRemoteDataSource.getWeather(city);
     }
+
+    @Override
+    public Flowable<Weather> getNowWeather(String city) {
+        return mRemoteDataSource.getNowWeather(city);
+    }
 }

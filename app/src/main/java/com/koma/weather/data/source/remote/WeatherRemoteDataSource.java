@@ -61,4 +61,21 @@ public class WeatherRemoteDataSource implements WeatherDataSource {
                     }
                 });
     }
+
+    @Override
+    public Flowable<Weather> getNowWeather(String city) {
+        LogUtils.i(TAG, "getNowWeather city : " + city);
+        return mWeatherApi.getNowWeather(city, Constants.API_KEY)
+                .flatMap(new Function<HeWeather, Flowable<Weather>>() {
+                    @Override
+                    public Flowable<Weather> apply(@NonNull HeWeather weather) throws Exception {
+                        return Flowable.just(weather.getWeather().get(0));
+                    }
+                }).filter(new Predicate<Weather>() {
+                    @Override
+                    public boolean test(@NonNull Weather weather) throws Exception {
+                        return weather.getStatus().equals("ok");
+                    }
+                });
+    }
 }

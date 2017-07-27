@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.koma.weather.R;
 import com.koma.weather.base.BaseActivity;
-import com.koma.weather.weathers.WeatherActivity;
+import com.koma.weather.main.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -70,7 +70,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void launchMainActivity() {
-        Intent intent = new Intent(SplashActivity.this, WeatherActivity.class);
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
         this.finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

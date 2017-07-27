@@ -2,19 +2,20 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
             android:text="详细信息"
             android:textSize="16sp" />
 
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_toEndOf="@+id/iv_now"
-                    android:text="29"
+                    android:text="__℃"
                     android:textSize="52sp" />
             </RelativeLayout>
 
@@ -84,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:paddingEnd="@dimen/activity_horizontal_margin"
-                        android:text="29" />
+                        android:text="__℃" />
                 </LinearLayout>
 
                 <View
@@ -110,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:paddingEnd="@dimen/activity_horizontal_margin"
-                        android:text="29" />
+                        android:text="__%" />
                 </LinearLayout>
 
                 <View
@@ -136,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:paddingEnd="@dimen/activity_horizontal_margin"
-                        android:text="29" />
+                        android:text="__mm" />
                 </LinearLayout>
 
                 <View
@@ -162,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:paddingEnd="@dimen/activity_horizontal_margin"
-                        android:text="10" />
+                        android:text="__km" />
                 </LinearLayout>
 
 

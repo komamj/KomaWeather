@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.koma.weather.data.source;
+package com.koma.weather.util;
 
-import com.koma.weather.data.model.Weather;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-import io.reactivex.Flowable;
+import javax.inject.Scope;
 
 /**
- * Created by koma on 7/18/17.
+ * Created by koma on 7/27/17.
  */
-
-public interface WeatherDataSource {
-    Flowable<Weather> getWeather(String city);
-
-    Flowable<Weather> getNowWeather(String city);
+@Documented
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ActivityScoped {
 }
