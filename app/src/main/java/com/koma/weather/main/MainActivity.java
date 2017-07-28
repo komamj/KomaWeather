@@ -123,11 +123,10 @@ public class MainActivity extends BasePermissionActivity implements
 
         mAdapter = new WeatherFragmentPagerAdapter(getSupportFragmentManager());
 
-        mViewPager.addOnPageChangeListener(this);
         mViewPager.setAdapter(mAdapter);
 
-        mIndicator.setViewPager(mViewPager);
-        mIndicator.setCurrentItem(0);
+        mIndicator.setViewPager(mViewPager, 0);
+        mIndicator.setOnPageChangeListener(this);
     }
 
     @Override

@@ -72,3 +72,6 @@
 public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
+-dontwarn org.greenrobot.greendao.database.**
+# If you do not use Rx:
+-dontwarn rx.**

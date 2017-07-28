@@ -28,6 +28,7 @@ import com.koma.weather.R;
 import com.koma.weather.base.BaseViewHolder;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.Utils;
+import com.koma.weather.widget.AqiView;
 
 import butterknife.BindView;
 
@@ -116,6 +117,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             nowInfoVH.mVis.setText(Utils.formatVisibility(mData.getNowInfo().getVisibility()));
         } else if (viewType == VIEW_TYPE_AQI_INFO) {
             AqiInfoVH aqiInfoVH = (AqiInfoVH) holder;
+            aqiInfoVH.mAqiView.setData(mData.getAqiInfo());
             aqiInfoVH.mCO.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getCo()));
             aqiInfoVH.mNO2.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getNo2()));
             aqiInfoVH.mO3.setText(Utils.formatAqi(mData.getAqiInfo().getCityInfo().getO3()));
@@ -161,6 +163,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     static class AqiInfoVH extends BaseViewHolder {
+        @BindView(R.id.aqi_view)
+        AqiView mAqiView;
         @BindView(R.id.tv_aqi_co)
         TextView mCO;
         @BindView(R.id.tv_aqi_no2)

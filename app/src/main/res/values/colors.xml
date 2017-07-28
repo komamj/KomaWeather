@@ -5,4 +5,11 @@
     <color name="colorAccent">#FFFF4081</color>
 
     <color name="colorDivider">#10000000</color>
+
+    <color name="indicator_color_1">#FF60C2CB</color>
+    <color name="indicator_color_2">#FF6FB452</color>
+    <color name="indicator_color_3">#FFF2AC00</color>
+    <color name="indicator_color_4">#FFDF3000</color>
+    <color name="indicator_color_5">#FFCA004A</color>
+    <color name="indicator_color_6">#FF7D0000</color>
 </resources>
