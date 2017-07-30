@@ -21,26 +21,26 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        WarningInfoDao.createTable(db, ifNotExists);
-        AqiInfoDao.createTable(db, ifNotExists);
-        SuggestionInfoDao.createTable(db, ifNotExists);
-        HourlyForecastInfoDao.createTable(db, ifNotExists);
-        BasicInfoDao.createTable(db, ifNotExists);
-        NowInfoDao.createTable(db, ifNotExists);
-        DailyForecastInfoDao.createTable(db, ifNotExists);
         WeatherModelDao.createTable(db, ifNotExists);
+        NowInfoDao.createTable(db, ifNotExists);
+        BasicInfoDao.createTable(db, ifNotExists);
+        DailyForecastInfoDao.createTable(db, ifNotExists);
+        AqiInfoDao.createTable(db, ifNotExists);
+        WarningInfoDao.createTable(db, ifNotExists);
+        HourlyForecastInfoDao.createTable(db, ifNotExists);
+        SuggestionInfoDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        WarningInfoDao.dropTable(db, ifExists);
-        AqiInfoDao.dropTable(db, ifExists);
-        SuggestionInfoDao.dropTable(db, ifExists);
-        HourlyForecastInfoDao.dropTable(db, ifExists);
-        BasicInfoDao.dropTable(db, ifExists);
-        NowInfoDao.dropTable(db, ifExists);
-        DailyForecastInfoDao.dropTable(db, ifExists);
         WeatherModelDao.dropTable(db, ifExists);
+        NowInfoDao.dropTable(db, ifExists);
+        BasicInfoDao.dropTable(db, ifExists);
+        DailyForecastInfoDao.dropTable(db, ifExists);
+        AqiInfoDao.dropTable(db, ifExists);
+        WarningInfoDao.dropTable(db, ifExists);
+        HourlyForecastInfoDao.dropTable(db, ifExists);
+        SuggestionInfoDao.dropTable(db, ifExists);
     }
 
     /**
@@ -59,14 +59,14 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(WarningInfoDao.class);
-        registerDaoClass(AqiInfoDao.class);
-        registerDaoClass(SuggestionInfoDao.class);
-        registerDaoClass(HourlyForecastInfoDao.class);
-        registerDaoClass(BasicInfoDao.class);
-        registerDaoClass(NowInfoDao.class);
-        registerDaoClass(DailyForecastInfoDao.class);
         registerDaoClass(WeatherModelDao.class);
+        registerDaoClass(NowInfoDao.class);
+        registerDaoClass(BasicInfoDao.class);
+        registerDaoClass(DailyForecastInfoDao.class);
+        registerDaoClass(AqiInfoDao.class);
+        registerDaoClass(WarningInfoDao.class);
+        registerDaoClass(HourlyForecastInfoDao.class);
+        registerDaoClass(SuggestionInfoDao.class);
     }
 
     public DaoSession newSession() {

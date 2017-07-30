@@ -25,6 +25,10 @@ import com.koma.weather.util.Constants;
 import com.koma.weather.util.LogUtils;
 import com.squareup.leakcanary.LeakCanary;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.nm.sp.SpotManager;
+import net.youmi.android.nm.sp.SpotRequestListener;
+
 /**
  * Created by koma on 7/18/17.
  */
@@ -50,6 +54,20 @@ public class WeatherApplication extends Application {
             }
             LeakCanary.install(this);
         }
+
+        AdManager.getInstance(getApplicationContext()).init(Constants.YOU_MI_ID,
+                Constants.YOU_MI_KEY, true);
+        SpotManager.getInstance(getApplicationContext()).requestSpot(new SpotRequestListener() {
+            @Override
+            public void onRequestSuccess() {
+
+            }
+
+            @Override
+            public void onRequestFailed(int i) {
+
+            }
+        });
 
         mWeatherRepositoryComponent = DaggerWeatherRepositoryComponent.builder()
                 .applicationModule(new ApplicationModule(getApplicationContext()))
