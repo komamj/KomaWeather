@@ -293,8 +293,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
                 break;
 
             case MotionEvent.ACTION_MOVE: {
-                final int activePointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
-                final float x = MotionEventCompat.getX(ev, activePointerIndex);
+                final float x = ev.getX();
                 final float deltaX = x - mLastMotionX;
 
                 if (!mIsDragging) {
@@ -351,7 +350,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
                 final int pointerId = ev.getPointerId(pointerIndex);
                 if (pointerId == mActivePointerId) {
                     final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-                    mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
+                    mActivePointerId = ev.getPointerId(newPointerIndex);
                 }
                 mLastMotionX = ev.getX();
                 break;

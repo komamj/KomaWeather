@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -57,7 +58,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_comf"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -107,7 +108,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_cw"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -157,7 +158,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_drsg"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -207,7 +208,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_flu"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -257,7 +258,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_sport"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -307,7 +308,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_trav"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 
@@ -357,7 +358,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/iv_living_index_uv"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin" />
 

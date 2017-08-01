@@ -44,7 +44,7 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
             // 去除无用代码
-            minifyEnabled true
+            minifyEnabled false
             // 进行对齐
             zipAlignEnabled true
             // 移除无用的资源
@@ -77,8 +77,6 @@ android {
         wandoujia {}
 
         baidu {}
-
-        c360 {}
 
         uc {}
     }

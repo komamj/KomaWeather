@@ -15,11 +15,12 @@
  */
 package com.koma.weather.splash;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.koma.weather.R;
-import com.koma.weather.base.BaseActivity;
+import com.koma.weather.base.BasePermissionActivity;
 import com.koma.weather.main.MainActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ import io.reactivex.subscribers.DisposableSubscriber;
  * Created by koma on 7/19/17.
  */
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BasePermissionActivity {
     private static final int DEFAULT_TIME = 2;
 
     private CompositeDisposable mDisposables;
@@ -41,13 +42,22 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mDisposables = new CompositeDisposable();
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public String[] getPermissions() {
+        return new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE
+        };
+    }
+
+    @Override
+    public void onPermissonGranted() {
+        mDisposables = new CompositeDisposable();
 
         Disposable disposable = Flowable.timer(DEFAULT_TIME, TimeUnit.SECONDS)
                 .subscribeWith(new DisposableSubscriber<Long>() {
@@ -67,6 +77,11 @@ public class SplashActivity extends BaseActivity {
                 });
 
         mDisposables.add(disposable);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     private void launchMainActivity() {
