@@ -15,6 +15,8 @@
  */
 package com.koma.weather.data.model;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
 import com.koma.weather.util.WindInfoConverter;
 
@@ -26,6 +28,7 @@ import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Created by koma on 7/19/17.
@@ -116,6 +119,35 @@ public class NowInfo implements Serializable {
                 .append(",wind :").append(this.mWindInfo.toString());
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        NowInfo nowInfo = (NowInfo) o;
+
+        return conditionInfo.equals(nowInfo.conditionInfo)
+                && TextUtils.equals(temperature, nowInfo.temperature)
+                && TextUtils.equals(sendibleTemp, nowInfo.sendibleTemp)
+                && TextUtils.equals(humidity, nowInfo.humidity)
+                && TextUtils.equals(precipitation, nowInfo.precipitation)
+                && TextUtils.equals(airPressure, nowInfo.airPressure)
+                && TextUtils.equals(temperature, nowInfo.temperature)
+                && TextUtils.equals(mVisibility, nowInfo.mVisibility)
+                && mWindInfo.equals(nowInfo.mWindInfo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{conditionInfo, sendibleTemp, humidity, precipitation,
+                airPressure, temperature, mVisibility, mWindInfo});
     }
 
     public Long getId() {

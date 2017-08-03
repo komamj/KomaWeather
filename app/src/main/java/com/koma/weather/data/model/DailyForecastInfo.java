@@ -25,6 +25,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Transient;
 
 import java.io.Serializable;
 
@@ -90,6 +91,9 @@ public class DailyForecastInfo implements Serializable {
     @Convert(converter = WindInfoConverter.class, columnType = String.class)
     @SerializedName("wind")
     private WindInfo mWindInfo;
+    @Transient
+    @SerializedName("astro")
+    private AstroInfo mAstroInfo;
 
     @Generated(hash = 810926863)
     public DailyForecastInfo(Long id, String humidity, String mPrecipitation,
@@ -192,6 +196,14 @@ public class DailyForecastInfo implements Serializable {
         this.mWindInfo = mWindInfo;
     }
 
+    public void setAstroInfo(AstroInfo astroInfo) {
+        this.mAstroInfo = astroInfo;
+    }
+
+    public AstroInfo getAstroInfo() {
+        return this.mAstroInfo;
+    }
+
     public static class DailyForecastCondition implements Serializable {
         private static final long serialVersionUID = 7523967970034938921L;
         /**
@@ -284,6 +296,50 @@ public class DailyForecastInfo implements Serializable {
                     .append(",min :").append(this.mMinTemperature);
 
             return builder.toString();
+        }
+    }
+
+    public static class AstroInfo implements Serializable {
+        private static final long serialVersionUID = 7523967970034938933L;
+        @SerializedName("mr")
+        private String mMr;
+        @SerializedName("ms")
+        private String mMs;
+        @SerializedName("sr")
+        private String mSr;
+        @SerializedName("ss")
+        private String mSs;
+
+        public String getMr() {
+            return this.mMr;
+        }
+
+        public void setMr(String mr) {
+            this.mMr = mr;
+        }
+
+        public void setMs(String ms) {
+            this.mMs = ms;
+        }
+
+        public String getMs() {
+            return this.mMs;
+        }
+
+        public void setSr(String sr) {
+            this.mSr = sr;
+        }
+
+        public String getSr() {
+            return this.mSr;
+        }
+
+        public void setSs(String ss) {
+            this.mSs = ss;
+        }
+
+        public String getSs() {
+            return this.mSs;
         }
     }
 }

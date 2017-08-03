@@ -79,7 +79,6 @@ public class AqiView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         final float w = getWidth();
-        LogUtils.i("", "width :" + w);
         final float h = getHeight();
         if (w <= 0 || h <= 0) {
             return;

@@ -15,11 +15,40 @@
  */
 package com.koma.weather.util;
 
+import android.os.Build;
+
 /**
  * Created by koma on 7/22/17.
  */
 
 public class Utils {
+    /**
+     * API 21
+     *
+     * @see Build.VERSION_CODES#LOLLIPOP
+     */
+    public static boolean hasLollipop() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+    /**
+     * API 23
+     *
+     * @see Build.VERSION_CODES#M
+     */
+    public static boolean hasMarshmallow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * API 24
+     *
+     * @see Build.VERSION_CODES#N
+     */
+    public static boolean hasNougat() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
+    }
+
     public static String getHourTime(String date) {
         return date.substring(date.length() - 5, date.length());
     }

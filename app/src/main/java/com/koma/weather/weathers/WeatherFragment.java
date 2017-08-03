@@ -26,6 +26,7 @@ import android.view.View;
 import com.koma.weather.R;
 import com.koma.weather.WeatherApplication;
 import com.koma.weather.base.BaseFragment;
+import com.koma.weather.data.model.DailyForecastInfo;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.LogUtils;
 import com.koma.weather.widget.ScrollChildSwipeRefreshLayout;
@@ -156,7 +157,11 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.Vie
 
     @Override
     public void showWeather(Weather weather) {
-        LogUtils.i(TAG, "showWeather : " + weather.getStatus());
+        LogUtils.i(TAG, "showWeather : " + weather.getStatus() + "daily forecast :" + weather.getDailyForecastInfo().size());
+
+        for (DailyForecastInfo info : weather.getDailyForecastInfo()) {
+            LogUtils.i(TAG, "info :" + info.mTemperatureInfo);
+        }
 
         if(mAdapter != null){
             mAdapter.replaceData(weather);

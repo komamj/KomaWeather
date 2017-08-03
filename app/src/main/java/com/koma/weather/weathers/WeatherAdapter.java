@@ -16,8 +16,8 @@
 package com.koma.weather.weathers;
 
 import android.content.Context;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +29,7 @@ import com.koma.weather.base.BaseViewHolder;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.Utils;
 import com.koma.weather.widget.AqiView;
+import com.koma.weather.widget.SunriseSunsetView;
 
 import butterknife.BindView;
 
@@ -41,6 +42,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int VIEW_TYPE_AQI_INFO = VIEW_TYPE_NOW_INFO + 1;
     private static final int VIEW_TYPE_SUGGESTION_INFO = VIEW_TYPE_AQI_INFO + 1;
     private static final int VIEW_TYPE_WIND_INFO = VIEW_TYPE_SUGGESTION_INFO + 1;
+    private static final int VIEW_TYPE_SUNRISE_SUNSET_INFO = VIEW_TYPE_WIND_INFO + 1;
 
     private Context mContext;
 
@@ -51,37 +53,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void replaceData(final Weather weather) {
+        if (weather == null) {
+            return;
+        }
         if (mData == null) {
             mData = weather;
 
-            //notifyItemRangeInserted(0, 4);
-            notifyDataSetChanged();
+            notifyItemRangeInserted(0, getItemCount());
         } else {
-            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-                @Override
-                public int getOldListSize() {
-                    return 4;
-                }
-
-                @Override
-                public int getNewListSize() {
-                    return 4;
-                }
-
-                @Override
-                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return false;
-                }
-
-                @Override
-                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
-                    return false;
-                }
-            });
             mData = weather;
-
-            result.dispatchUpdatesTo(this);
+            if (!TextUtils.equals(mData.getBasicInfo().getUpdateInfo().getTimeLocal(),
+                    weather.getBasicInfo().getUpdateInfo().getTimeLocal())) {
+                notifyItemRangeChanged(0, getItemCount());
+            }
         }
     }
 
@@ -97,6 +81,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         } else if (viewType == VIEW_TYPE_SUGGESTION_INFO) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_suggestion_info, parent, false);
             viewHolder = new SuggestionVH(view);
+        } else if (viewType == VIEW_TYPE_WIND_INFO) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_wind_info, parent, false);
+            viewHolder = new WindInfoVH(view);
+        } else if (viewType == VIEW_TYPE_SUNRISE_SUNSET_INFO) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_sunrisesunset_info, parent, false);
+            viewHolder = new SunriseSunsetInfoVH(view);
         } else {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_now_info, parent, false);
             viewHolder = new NowInfoVH(view);
@@ -140,13 +130,18 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             suggestionVH.mTravTxt.setText(mData.getSuggerstionInfo().getTravelInfo().getDetail());
             suggestionVH.mUvBrf.setText(mData.getSuggerstionInfo().getUltravioletInfo().getBriefDescription());
             suggestionVH.mUvTxt.setText(mData.getSuggerstionInfo().getUltravioletInfo().getDetail());
-        } else {
+        } else if (viewType == VIEW_TYPE_SUNRISE_SUNSET_INFO) {
+            SunriseSunsetInfoVH sunriseSunsetInfoVH = (SunriseSunsetInfoVH) holder;
+            sunriseSunsetInfoVH.mSunriseSunset.setTime(mData.getDailyForecastInfo().get(0).getAstroInfo().getSr(),
+                    mData.getDailyForecastInfo().get(0).getAstroInfo().getSs());
+        } else if (viewType == VIEW_TYPE_WIND_INFO) {
+            WindInfoVH windInfoVH = (WindInfoVH) holder;
         }
     }
 
     @Override
     public int getItemCount() {
-        return mData == null ? 0 : 4;
+        return mData == null ? 0 : 5;
     }
 
     @Override
@@ -157,8 +152,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             return VIEW_TYPE_AQI_INFO;
         } else if (position == 2) {
             return VIEW_TYPE_SUGGESTION_INFO;
-        } else {
+        } else if (position == 3) {
             return VIEW_TYPE_WIND_INFO;
+        } else if (position == 4) {
+            return VIEW_TYPE_SUNRISE_SUNSET_INFO;
+        } else {
+            return 0;
         }
     }
 
@@ -234,6 +233,22 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         TextView mUvTxt;
 
         public SuggestionVH(View itemView) {
+            super(itemView);
+        }
+    }
+
+    static class WindInfoVH extends BaseViewHolder {
+
+        public WindInfoVH(View itemView) {
+            super(itemView);
+        }
+    }
+
+    static class SunriseSunsetInfoVH extends BaseViewHolder {
+        @BindView(R.id.sunrise_sunset)
+        SunriseSunsetView mSunriseSunset;
+
+        public SunriseSunsetInfoVH(View itemView) {
             super(itemView);
         }
     }
