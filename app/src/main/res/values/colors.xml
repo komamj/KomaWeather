@@ -12,10 +12,20 @@
     <color name="indicator_color_4">#FFDF3000</color>
     <color name="indicator_color_5">#FFCA004A</color>
     <color name="indicator_color_6">#FF7D0000</color>
-
+    <!--SunriseSunsetView-->
     <color name="default_text_color">#FFB47E5E</color>
     <color name="default_bottom_line_color">#FFFFDA8C</color>
     <color name="default_arc_color">#FFE1A2</color>
     <color name="default_arc_solid_color">#FFFFefcb</color>
     <color name="default_sun_color">#FFFFC956</color>
+    <!--WindView-->
+
+    <integer-array name="indicator_colors">
+        <item name="indicator_color_1">@color/indicator_color_1</item>
+        <item name="indicator_color_2">@color/indicator_color_2</item>
+        <item name="indicator_color_3">@color/indicator_color_3</item>
+        <item name="indicator_color_4">@color/indicator_color_4</item>
+        <item name="indicator_color_5">@color/indicator_color_5</item>
+        <item name="indicator_color_6">@color/indicator_color_6</item>
+    </integer-array>
 </resources>

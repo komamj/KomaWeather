@@ -130,12 +130,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             suggestionVH.mTravTxt.setText(mData.getSuggerstionInfo().getTravelInfo().getDetail());
             suggestionVH.mUvBrf.setText(mData.getSuggerstionInfo().getUltravioletInfo().getBriefDescription());
             suggestionVH.mUvTxt.setText(mData.getSuggerstionInfo().getUltravioletInfo().getDetail());
-        } else if (viewType == VIEW_TYPE_SUNRISE_SUNSET_INFO) {
-            SunriseSunsetInfoVH sunriseSunsetInfoVH = (SunriseSunsetInfoVH) holder;
-            sunriseSunsetInfoVH.mSunriseSunset.setTime(mData.getDailyForecastInfo().get(0).getAstroInfo().getSr(),
-                    mData.getDailyForecastInfo().get(0).getAstroInfo().getSs());
         } else if (viewType == VIEW_TYPE_WIND_INFO) {
             WindInfoVH windInfoVH = (WindInfoVH) holder;
+        } else if (viewType == VIEW_TYPE_SUNRISE_SUNSET_INFO) {
+            String sunriseTime = mData.getDailyForecastInfo().get(0).getAstroInfo().getSr();
+            String sunsetTime = mData.getDailyForecastInfo().get(0).getAstroInfo().getSs();
+            SunriseSunsetInfoVH sunriseSunsetInfoVH = (SunriseSunsetInfoVH) holder;
+            sunriseSunsetInfoVH.mSunriseSunset.setTime(sunriseTime,
+                    sunsetTime);
+            sunriseSunsetInfoVH.mSunrise.setText(sunriseTime);
+            sunriseSunsetInfoVH.mSunset.setText(sunsetTime);
         }
     }
 
@@ -245,6 +249,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     static class SunriseSunsetInfoVH extends BaseViewHolder {
+        @BindView(R.id.tv_sunrise)
+        TextView mSunrise;
+        @BindView(R.id.tv_sunset)
+        TextView mSunset;
         @BindView(R.id.sunrise_sunset)
         SunriseSunsetView mSunriseSunset;
 

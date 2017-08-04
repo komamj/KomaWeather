@@ -7,8 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="default_text_size">12sp</dimen>
-    <dimen name="default_bottom_line_height">2dp</dimen>
-    <dimen name="default_interval_size">5dp</dimen>
+    <dimen name="default_bottom_line_height">1dp</dimen>
+    <dimen name="default_arc_interval_size">5dp</dimen>
+    <dimen name="default_sun_interval_size">2dp</dimen>
     <dimen name="default_arc_dash_height">2dp</dimen>
     <dimen name="default_sun_size">10dp</dimen>
 </resources>
