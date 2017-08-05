@@ -230,7 +230,8 @@ public class MainActivity extends BasePermissionActivity implements
 
         mCityName.setText(getCity());
         mTemperature.setText(Utils.formatTemperature(weather.getNowInfo().getTemperature()));
-        mUpdateInfo.setText(weather.getBasicInfo().getUpdateInfo().getTimeLocal());
+        mUpdateInfo.setText(getString(R.string.update_info,
+                weather.getBasicInfo().getUpdateInfo().getTimeLocal()));
     }
 
     @Override

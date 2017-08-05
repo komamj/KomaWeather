@@ -13,6 +13,8 @@
     <string name="nav_exit">Exit</string>
     <string name="action_settings">Settings</string>
 
+    <string name="update_info">发布于 %s</string>
+
     <string-array name="indicator_strings">
         <item name="indicator_string_1">优</item>
         <item name="indicator_string_2">良</item>

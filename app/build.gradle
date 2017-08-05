@@ -115,6 +115,10 @@ dependencies {
 
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glide_version"
+    compile ("com.github.bumptech.glide:recyclerview-integration:$rootProject.ext.glide_version") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
     //dagger2
     compile "com.google.dagger:dagger:$rootProject.ext.dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger_version"
