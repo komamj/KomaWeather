@@ -15,39 +15,24 @@
  */
 package com.koma.weather.util;
 
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.data.DataFetcher;
+import android.text.TextUtils;
+import android.widget.ImageView;
 
-import java.io.InputStream;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
 
 /**
- * Created by koma on 8/5/17.
+ * Created by koma on 8/7/17.
  */
 
-public class WeatherDataFectcher implements DataFetcher<InputStream> {
-    @Override
-    public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+public class ImageLoader {
+    public static void loadWeatherIcon(RequestBuilder requestBuilder, RequestOptions requestOptions,
+                                       String weatherCode, ImageView imageView) {
+        if (TextUtils.equals(weatherCode, "1")) {
 
-    }
+        } else {
 
-    @Override
-    public void cleanup() {
-
-    }
-
-    @Override
-    public void cancel() {
-
-    }
-
-    @Override
-    public Class<InputStream> getDataClass() {
-        return null;
-    }
-
-    @Override
-    public DataSource getDataSource() {
-        return null;
+        }
+        requestBuilder.apply(requestOptions).into(imageView);
     }
 }

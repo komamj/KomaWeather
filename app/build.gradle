@@ -7,12 +7,12 @@ def static releaseTime() {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion as int
+    buildToolsVersion rootProject.ext.buildToolsVersion as String
     defaultConfig {
         applicationId "com.koma.weather"
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion as int
+        targetSdkVersion rootProject.ext.targetSdkVersion as int
         versionCode 1000
         versionName "1.0.00"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

@@ -15,26 +15,12 @@
  */
 package com.koma.weather.util;
 
-import android.support.annotation.Nullable;
-
-import com.bumptech.glide.load.Options;
-import com.bumptech.glide.load.model.ModelLoader;
-
-import java.io.InputStream;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 /**
- * Created by koma on 8/5/17.
+ * Created by koma on 8/7/17.
  */
-
-public class WeatherModelLoader implements ModelLoader<String,InputStream> {
-    @Nullable
-    @Override
-    public LoadData<InputStream> buildLoadData(String s, int width, int height, Options options) {
-        return null;
-    }
-
-    @Override
-    public boolean handles(String s) {
-        return false;
-    }
+@GlideModule
+public class WeatherGlideModule extends AppGlideModule {
 }

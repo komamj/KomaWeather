@@ -50,6 +50,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public WeatherAdapter(Context context) {
         mContext = context;
+
+        setHasStableIds(true);
     }
 
     public void replaceData(final Weather weather) {
