@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.koma.weather.R;
 import com.koma.weather.base.BaseViewHolder;
 import com.koma.weather.data.model.Weather;
+import com.koma.weather.util.ImageLoader;
 import com.koma.weather.util.Utils;
 import com.koma.weather.widget.AqiView;
 import com.koma.weather.widget.SunriseSunsetView;
@@ -101,10 +102,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         int viewType = getItemViewType(position);
         if (viewType == VIEW_TYPE_NOW_INFO) {
             NowInfoVH nowInfoVH = (NowInfoVH) holder;
+            nowInfoVH.mNowImage.setImageResource(ImageLoader.getResourceId(
+                    mData.getNowInfo().getConditionInfo().getCode()));
             nowInfoVH.mTxt.setText(mData.getNowInfo().getConditionInfo().getDescription());
             nowInfoVH.mFl.setText(Utils.formatTemperature(mData.getNowInfo().getSendibleTemp()));
             nowInfoVH.mHum.setText(Utils.formatHumidity(mData.getNowInfo().getHumidity()));
-            nowInfoVH.mTemp.setText(Utils.formatTemperature(mData.getNowInfo().getTemperature()));
             nowInfoVH.mPcpn.setText(Utils.formatPcpn(mData.getNowInfo().getPrecipitation()));
             nowInfoVH.mVis.setText(Utils.formatVisibility(mData.getNowInfo().getVisibility()));
         } else if (viewType == VIEW_TYPE_AQI_INFO) {
@@ -190,8 +192,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     static class NowInfoVH extends BaseViewHolder {
         @BindView(R.id.tv_now_txt)
         TextView mTxt;
-        @BindView(R.id.tv_now_temp)
-        TextView mTemp;
         @BindView(R.id.iv_now)
         ImageView mNowImage;
         @BindView(R.id.tv_now_fl)

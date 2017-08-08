@@ -39,6 +39,8 @@ public class SplashActivity extends BasePermissionActivity {
 
     private CompositeDisposable mDisposables;
 
+    Disposable mDisposable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,7 @@ public class SplashActivity extends BasePermissionActivity {
     public void onPermissonGranted() {
         mDisposables = new CompositeDisposable();
 
-        Disposable disposable = Flowable.timer(DEFAULT_TIME, TimeUnit.SECONDS)
+        mDisposable = Flowable.timer(DEFAULT_TIME, TimeUnit.SECONDS)
                 .subscribeWith(new DisposableSubscriber<Long>() {
                     @Override
                     public void onNext(Long aLong) {
@@ -76,12 +78,7 @@ public class SplashActivity extends BasePermissionActivity {
                     }
                 });
 
-        mDisposables.add(disposable);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        mDisposables.add(mDisposable);
     }
 
     private void launchMainActivity() {
@@ -89,25 +86,6 @@ public class SplashActivity extends BasePermissionActivity {
         startActivity(intent);
         this.finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (mDisposables != null) {
-            mDisposables.clear();
-        }
     }
 
     @Override

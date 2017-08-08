@@ -28,4 +28,9 @@
         <item name="indicator_color_5">@color/indicator_color_5</item>
         <item name="indicator_color_6">@color/indicator_color_6</item>
     </integer-array>
+
+    <!--weather icon color-->
+    <color name="colorCloudy">#FFAEADAE</color>
+    <color name="colorDust">#FFAEADAE</color>
+    <color name="colorSunny">#FFF4EA2A</color>
 </resources>

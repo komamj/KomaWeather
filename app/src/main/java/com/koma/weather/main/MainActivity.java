@@ -16,6 +16,7 @@
 package com.koma.weather.main;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import com.koma.weather.R;
 import com.koma.weather.WeatherApplication;
 import com.koma.weather.base.BasePermissionActivity;
+import com.koma.weather.city.AddCityActivity;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.util.LogUtils;
 import com.koma.weather.util.Utils;
@@ -81,8 +83,8 @@ public class MainActivity extends BasePermissionActivity implements
 
     @OnClick(R.id.fab)
     void showSnackbar(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Intent intent = new Intent(MainActivity.this, AddCityActivity.class);
+        startActivity(intent);
     }
 
     @Override
