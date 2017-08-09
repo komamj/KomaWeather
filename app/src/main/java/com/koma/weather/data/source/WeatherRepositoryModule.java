@@ -19,8 +19,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.koma.weather.data.model.DaoMaster;
-import com.koma.weather.data.model.DaoSession;
 import com.koma.weather.data.source.local.WeatherLocalDataSource;
 import com.koma.weather.data.source.remote.WeatherRemoteDataSource;
 
@@ -52,8 +50,8 @@ public class WeatherRepositoryModule {
     @Singleton
     @Provides
     @Local
-    WeatherLocalDataSource provideWeatherLocalDataSource(Context context, DaoSession daoSession) {
-        return new WeatherLocalDataSource(context, daoSession);
+    WeatherLocalDataSource provideWeatherLocalDataSource(Context context) {
+        return new WeatherLocalDataSource(context);
     }
 
     @Singleton
@@ -104,13 +102,5 @@ public class WeatherRepositoryModule {
     @Provides
     WeatherApi provideWeatherApi(Retrofit retrofit) {
         return retrofit.create(WeatherApi.class);
-    }
-
-    @Singleton
-    @Provides
-    DaoSession provideDaoSession(Context context) {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "weather.db");
-        Database db = helper.getWritableDb();
-        return new DaoMaster(db).newSession();
     }
 }

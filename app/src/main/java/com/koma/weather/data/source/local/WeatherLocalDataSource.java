@@ -17,7 +17,6 @@ package com.koma.weather.data.source.local;
 
 import android.content.Context;
 
-import com.koma.weather.data.model.DaoSession;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.WeatherDataSource;
 
@@ -35,13 +34,9 @@ public class WeatherLocalDataSource implements WeatherDataSource {
 
     private final Context mContext;
 
-    private final DaoSession mDaoSession;
-
     @Inject
-    public WeatherLocalDataSource(Context context, DaoSession daoSession) {
+    public WeatherLocalDataSource(Context context) {
         mContext = context;
-
-        mDaoSession = daoSession;
     }
 
     @Override
