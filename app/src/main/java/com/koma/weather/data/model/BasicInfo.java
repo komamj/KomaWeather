@@ -29,75 +29,43 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * Created by koma on 7/19/17.
  */
-@Entity(nameInDb = "basic_info")
 public final class BasicInfo implements Serializable {
     private static final long serialVersionUID = 7523967970034938901L;
     /**
      * city_id
      */
-    @Property(nameInDb = "city_id")
     @SerializedName("id")
     private String cityId;
-
-    @Id(autoincrement = true)
-    @Property(nameInDb = "id")
-    private Long _id;
     /**
      * city name
      */
     @SerializedName("city")
-    @Property(nameInDb = "city")
     private String cityName;
     /**
      * country name
      */
-    @Property(nameInDb = "cnty")
     @SerializedName("cnty")
     private String countryName;
     /**
      * latitude
      */
-    @Property(nameInDb = "lat")
     @SerializedName("lat")
     private String latitude;
     /**
      * longitude
      */
-    @Property(nameInDb = "lon")
     @SerializedName("lon")
     private String longitude;
     /**
      * province name
      */
-    @Property(nameInDb = "prov")
     @SerializedName("prov")
     private String provinceName;
     /**
      * update info
      */
-    @Property(nameInDb = "update")
-    @Convert(converter = UpdateInfoConverter.class, columnType = String.class)
     @SerializedName("update")
     private UpdateInfo updateInfo;
-
-
-    @Generated(hash = 488594019)
-    public BasicInfo(String cityId, Long _id, String cityName, String countryName, String latitude,
-            String longitude, String provinceName, UpdateInfo updateInfo) {
-        this.cityId = cityId;
-        this._id = _id;
-        this.cityName = cityName;
-        this.countryName = countryName;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.provinceName = provinceName;
-        this.updateInfo = updateInfo;
-    }
-
-    @Generated(hash = 1912859097)
-    public BasicInfo() {
-    }
-
 
     @Override
     public String toString() {
@@ -116,14 +84,6 @@ public final class BasicInfo implements Serializable {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
-    }
-
-    public Long get_id() {
-        return this._id;
-    }
-
-    public void set_id(Long _id) {
-        this._id = _id;
     }
 
     public String getCityName() {

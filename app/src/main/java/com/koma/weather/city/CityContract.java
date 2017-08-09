@@ -17,6 +17,9 @@ package com.koma.weather.city;
 
 import com.koma.weather.base.BasePresenter;
 import com.koma.weather.base.BaseView;
+import com.koma.weather.data.model.City;
+
+import java.util.List;
 
 /**
  * Created by koma on 8/8/17.
@@ -24,8 +27,18 @@ import com.koma.weather.base.BaseView;
 
 public interface CityContract {
     interface View extends BaseView<Presenter> {
+        void setLoadingIndicator(boolean active);
+
+        void showCities(List<City> cities);
+
+        boolean isActive();
+
+        void showSuccessfullyLoadedMessage();
+
+        void showLoadingCitiesError();
     }
 
     interface Presenter extends BasePresenter {
+        void loadCities();
     }
 }

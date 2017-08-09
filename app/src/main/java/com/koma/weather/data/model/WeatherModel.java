@@ -19,17 +19,64 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.ToMany;
+import org.greenrobot.greendao.annotation.Transient;
+
+import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by koma on 7/25/17.
  */
-@Entity(indexes = {
-        @Index(value = "mCityId", unique = true)}, nameInDb = "weather")
-
+@Entity(indexes = {@Index(value = "cityId", unique = true)}, nameInDb = "weather")
 public class WeatherModel {
     @Id(autoincrement = true)
     private Long mId;
+    //alarmsinfo
+    /**
+     * warning level
+     */
+    @Property(nameInDb = "level")
+    private String level;
+    /**
+     * warning status
+     */
+    @Property(nameInDb = "status")
+    private String status;
+    /**
+     * warning title
+     */
+    @Property(nameInDb = "title")
+    private String title;
+    /**
+     * warning details
+     */
+    @Property(nameInDb = "warning_description")
+    private String warningDescription;
+    /**
+     * warning type
+     */
+    @Property(nameInDb = "warning_type")
+    private String type;
+
+    //aqi
+    @Property(nameInDb = "aqi")
+    private String aqi;
+    @Property(nameInDb = "co")
+    private String co;
+    @Property(nameInDb = "no2")
+    private String no2;
+    @Property(nameInDb = "o3")
+    private String o3;
+    @Property(nameInDb = "pm10")
+    private String pm10;
+    @Property(nameInDb = "pm25")
+    private String pm25;
+    @Property(nameInDb = "qlty")
+    private String quality;
+    @Property(nameInDb = "so2")
+    private String so2;
+
     //basic info
     /**
      * city name
@@ -40,383 +87,348 @@ public class WeatherModel {
      * id
      */
     @Property(nameInDb = "city_id")
-    private String mCityId;
+    private String cityId;
 
-    @Property(nameInDb = "date_local")
-    private String mLocalTime;
+    @Property(nameInDb = "local_time")
+    private String localTime;
 
-    @Property(nameInDb = "date_utc")
-    private String mUtcTime;
+    @Property(nameInDb = "utc_time")
+    private String utcTime;
+    @Transient
+    private List<DailyForecastInfo> mDailyForecastInfos;
+
     //WeatherConditionInfo
     /**
      * weather code
      */
     @Property(nameInDb = "code")
-    private String mCode;
+    private String code;
     /**
      * weather description
      */
     @Property(nameInDb = "txt")
-    private String mDescription;
+    private String description;
     /**
      * weather code for day
      */
     @Property(nameInDb = "code_d")
-    private String mCodeDay;
+    private String codeDay;
     /**
      * weather code for night
      */
     @Property(nameInDb = "code_n")
-    private String mCodeNight;
+    private String codeNight;
     /**
      * weather description for day
      */
     @Property(nameInDb = "txt_d")
-    private String mDescriptionDay;
+    private String descriptionDay;
     /**
      * weather description for night
      */
     @Property(nameInDb = "txt_n")
-    private String mDescriptionNight;
+    private String descriptionNight;
 
     //nowinfo
     @Property(nameInDb = "fl")
-    private String mSendibleTemp;
+    private String sendibleTemp;
     /**
      * relative humidity
      */
     @Property(nameInDb = "hum")
-    private String mHumidity;
+    private String humidity;
     /**
      * amount of precipitation
      */
     @Property(nameInDb = "pcpn")
-    private String mPrecipitation;
+    private String precipitation;
     /**
      * air pressure
      */
     @Property(nameInDb = "pres")
-    private String mAirPressure;
+    private String airPressure;
     /**
      * temperature
      */
     @Property(nameInDb = "tmp")
-    private String mTemperature;
+    private String temperature;
     /**
      * visibility
      */
     @Property(nameInDb = "vis")
-    private String mVisibility;
+    private String visibility;
     //wind info
     /**
      * the degree of wind direction
      */
     @Property(nameInDb = "deg")
-    private String mWindDegree;
+    private String windDegree;
     /**
      * wind direction
      */
     @Property(nameInDb = "dir")
-    private String mWindDirection;
+    private String windDirection;
     /**
      * wind power
      */
     @Property(nameInDb = "sc")
-    private String mWindPower;
+    private String windPower;
     /**
      * wind speed
      */
     @Property(nameInDb = "spd")
-    private String mWindSpeed;
-    //cityinfo
-    @Property(nameInDb = "aqi")
-    private String mAqi;
-    @Property(nameInDb = "co")
-    private String mCO;
-    @Property(nameInDb = "no2")
-    private String mNO2;
-    @Property(nameInDb = "o3")
-    private String mO3;
-    @Property(nameInDb = "pm10")
-    private String mPM10;
-    @Property(nameInDb = "pm25")
-    private String mPM25;
-    @Property(nameInDb = "qlty")
-    private String mQuality;
-    @Property(nameInDb = "so2")
-    private String mSO2;
-    //alarmsinfo
-    /**
-     * warning level
-     */
-    private String mLevel;
-    /**
-     * warning status
-     */
-    private String mStatus;
-    /**
-     * warning title
-     */
-    private String mTitle;
-    /**
-     * warning details
-     */
-    private String mWarningDescription;
-    /**
-     * warning type
-     */
-    private String mType;
-@Generated(hash = 10749052)
-public WeatherModel(Long mId, String mCityName, String mCityId,
-        String mLocalTime, String mUtcTime, String mCode, String mDescription,
-        String mCodeDay, String mCodeNight, String mDescriptionDay,
-        String mDescriptionNight, String mSendibleTemp, String mHumidity,
-        String mPrecipitation, String mAirPressure, String mTemperature,
-        String mVisibility, String mWindDegree, String mWindDirection,
-        String mWindPower, String mWindSpeed, String mAqi, String mCO,
-        String mNO2, String mO3, String mPM10, String mPM25, String mQuality,
-        String mSO2, String mLevel, String mStatus, String mTitle,
-        String mWarningDescription, String mType) {
-    this.mId = mId;
-    this.mCityName = mCityName;
-    this.mCityId = mCityId;
-    this.mLocalTime = mLocalTime;
-    this.mUtcTime = mUtcTime;
-    this.mCode = mCode;
-    this.mDescription = mDescription;
-    this.mCodeDay = mCodeDay;
-    this.mCodeNight = mCodeNight;
-    this.mDescriptionDay = mDescriptionDay;
-    this.mDescriptionNight = mDescriptionNight;
-    this.mSendibleTemp = mSendibleTemp;
-    this.mHumidity = mHumidity;
-    this.mPrecipitation = mPrecipitation;
-    this.mAirPressure = mAirPressure;
-    this.mTemperature = mTemperature;
-    this.mVisibility = mVisibility;
-    this.mWindDegree = mWindDegree;
-    this.mWindDirection = mWindDirection;
-    this.mWindPower = mWindPower;
-    this.mWindSpeed = mWindSpeed;
-    this.mAqi = mAqi;
-    this.mCO = mCO;
-    this.mNO2 = mNO2;
-    this.mO3 = mO3;
-    this.mPM10 = mPM10;
-    this.mPM25 = mPM25;
-    this.mQuality = mQuality;
-    this.mSO2 = mSO2;
-    this.mLevel = mLevel;
-    this.mStatus = mStatus;
-    this.mTitle = mTitle;
-    this.mWarningDescription = mWarningDescription;
-    this.mType = mType;
-}
-@Generated(hash = 802490738)
-public WeatherModel() {
-}
-public Long getMId() {
-    return this.mId;
-}
-public void setMId(Long mId) {
-    this.mId = mId;
-}
-public String getMCityName() {
-    return this.mCityName;
-}
-public void setMCityName(String mCityName) {
-    this.mCityName = mCityName;
-}
-public String getMCityId() {
-    return this.mCityId;
-}
-public void setMCityId(String mCityId) {
-    this.mCityId = mCityId;
-}
-public String getMLocalTime() {
-    return this.mLocalTime;
-}
-public void setMLocalTime(String mLocalTime) {
-    this.mLocalTime = mLocalTime;
-}
-public String getMUtcTime() {
-    return this.mUtcTime;
-}
-public void setMUtcTime(String mUtcTime) {
-    this.mUtcTime = mUtcTime;
-}
-public String getMCode() {
-    return this.mCode;
-}
-public void setMCode(String mCode) {
-    this.mCode = mCode;
-}
-public String getMDescription() {
-    return this.mDescription;
-}
-public void setMDescription(String mDescription) {
-    this.mDescription = mDescription;
-}
-public String getMCodeDay() {
-    return this.mCodeDay;
-}
-public void setMCodeDay(String mCodeDay) {
-    this.mCodeDay = mCodeDay;
-}
-public String getMCodeNight() {
-    return this.mCodeNight;
-}
-public void setMCodeNight(String mCodeNight) {
-    this.mCodeNight = mCodeNight;
-}
-public String getMDescriptionDay() {
-    return this.mDescriptionDay;
-}
-public void setMDescriptionDay(String mDescriptionDay) {
-    this.mDescriptionDay = mDescriptionDay;
-}
-public String getMDescriptionNight() {
-    return this.mDescriptionNight;
-}
-public void setMDescriptionNight(String mDescriptionNight) {
-    this.mDescriptionNight = mDescriptionNight;
-}
-public String getMSendibleTemp() {
-    return this.mSendibleTemp;
-}
-public void setMSendibleTemp(String mSendibleTemp) {
-    this.mSendibleTemp = mSendibleTemp;
-}
-public String getMHumidity() {
-    return this.mHumidity;
-}
-public void setMHumidity(String mHumidity) {
-    this.mHumidity = mHumidity;
-}
-public String getMPrecipitation() {
-    return this.mPrecipitation;
-}
-public void setMPrecipitation(String mPrecipitation) {
-    this.mPrecipitation = mPrecipitation;
-}
-public String getMAirPressure() {
-    return this.mAirPressure;
-}
-public void setMAirPressure(String mAirPressure) {
-    this.mAirPressure = mAirPressure;
-}
-public String getMTemperature() {
-    return this.mTemperature;
-}
-public void setMTemperature(String mTemperature) {
-    this.mTemperature = mTemperature;
-}
-public String getMVisibility() {
-    return this.mVisibility;
-}
-public void setMVisibility(String mVisibility) {
-    this.mVisibility = mVisibility;
-}
-public String getMWindDegree() {
-    return this.mWindDegree;
-}
-public void setMWindDegree(String mWindDegree) {
-    this.mWindDegree = mWindDegree;
-}
-public String getMWindDirection() {
-    return this.mWindDirection;
-}
-public void setMWindDirection(String mWindDirection) {
-    this.mWindDirection = mWindDirection;
-}
-public String getMWindPower() {
-    return this.mWindPower;
-}
-public void setMWindPower(String mWindPower) {
-    this.mWindPower = mWindPower;
-}
-public String getMWindSpeed() {
-    return this.mWindSpeed;
-}
-public void setMWindSpeed(String mWindSpeed) {
-    this.mWindSpeed = mWindSpeed;
-}
-public String getMAqi() {
-    return this.mAqi;
-}
-public void setMAqi(String mAqi) {
-    this.mAqi = mAqi;
-}
-public String getMCO() {
-    return this.mCO;
-}
-public void setMCO(String mCO) {
-    this.mCO = mCO;
-}
-public String getMNO2() {
-    return this.mNO2;
-}
-public void setMNO2(String mNO2) {
-    this.mNO2 = mNO2;
-}
-public String getMO3() {
-    return this.mO3;
-}
-public void setMO3(String mO3) {
-    this.mO3 = mO3;
-}
-public String getMPM10() {
-    return this.mPM10;
-}
-public void setMPM10(String mPM10) {
-    this.mPM10 = mPM10;
-}
-public String getMPM25() {
-    return this.mPM25;
-}
-public void setMPM25(String mPM25) {
-    this.mPM25 = mPM25;
-}
-public String getMQuality() {
-    return this.mQuality;
-}
-public void setMQuality(String mQuality) {
-    this.mQuality = mQuality;
-}
-public String getMSO2() {
-    return this.mSO2;
-}
-public void setMSO2(String mSO2) {
-    this.mSO2 = mSO2;
-}
-public String getMLevel() {
-    return this.mLevel;
-}
-public void setMLevel(String mLevel) {
-    this.mLevel = mLevel;
-}
-public String getMStatus() {
-    return this.mStatus;
-}
-public void setMStatus(String mStatus) {
-    this.mStatus = mStatus;
-}
-public String getMTitle() {
-    return this.mTitle;
-}
-public void setMTitle(String mTitle) {
-    this.mTitle = mTitle;
-}
-public String getMWarningDescription() {
-    return this.mWarningDescription;
-}
-public void setMWarningDescription(String mWarningDescription) {
-    this.mWarningDescription = mWarningDescription;
-}
-public String getMType() {
-    return this.mType;
-}
-public void setMType(String mType) {
-    this.mType = mType;
-}
+    private String windSpeed;
+    @Generated(hash = 156344226)
+    public WeatherModel(Long mId, String level, String status, String title,
+            String warningDescription, String type, String aqi, String co,
+            String no2, String o3, String pm10, String pm25, String quality,
+            String so2, String mCityName, String cityId, String localTime,
+            String utcTime, String code, String description, String codeDay,
+            String codeNight, String descriptionDay, String descriptionNight,
+            String sendibleTemp, String humidity, String precipitation,
+            String airPressure, String temperature, String visibility,
+            String windDegree, String windDirection, String windPower,
+            String windSpeed) {
+        this.mId = mId;
+        this.level = level;
+        this.status = status;
+        this.title = title;
+        this.warningDescription = warningDescription;
+        this.type = type;
+        this.aqi = aqi;
+        this.co = co;
+        this.no2 = no2;
+        this.o3 = o3;
+        this.pm10 = pm10;
+        this.pm25 = pm25;
+        this.quality = quality;
+        this.so2 = so2;
+        this.mCityName = mCityName;
+        this.cityId = cityId;
+        this.localTime = localTime;
+        this.utcTime = utcTime;
+        this.code = code;
+        this.description = description;
+        this.codeDay = codeDay;
+        this.codeNight = codeNight;
+        this.descriptionDay = descriptionDay;
+        this.descriptionNight = descriptionNight;
+        this.sendibleTemp = sendibleTemp;
+        this.humidity = humidity;
+        this.precipitation = precipitation;
+        this.airPressure = airPressure;
+        this.temperature = temperature;
+        this.visibility = visibility;
+        this.windDegree = windDegree;
+        this.windDirection = windDirection;
+        this.windPower = windPower;
+        this.windSpeed = windSpeed;
+    }
+    @Generated(hash = 802490738)
+    public WeatherModel() {
+    }
+    public Long getMId() {
+        return this.mId;
+    }
+    public void setMId(Long mId) {
+        this.mId = mId;
+    }
+    public String getLevel() {
+        return this.level;
+    }
+    public void setLevel(String level) {
+        this.level = level;
+    }
+    public String getStatus() {
+        return this.status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getTitle() {
+        return this.title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getWarningDescription() {
+        return this.warningDescription;
+    }
+    public void setWarningDescription(String warningDescription) {
+        this.warningDescription = warningDescription;
+    }
+    public String getType() {
+        return this.type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getAqi() {
+        return this.aqi;
+    }
+    public void setAqi(String aqi) {
+        this.aqi = aqi;
+    }
+    public String getCo() {
+        return this.co;
+    }
+    public void setCo(String co) {
+        this.co = co;
+    }
+    public String getNo2() {
+        return this.no2;
+    }
+    public void setNo2(String no2) {
+        this.no2 = no2;
+    }
+    public String getO3() {
+        return this.o3;
+    }
+    public void setO3(String o3) {
+        this.o3 = o3;
+    }
+    public String getPm10() {
+        return this.pm10;
+    }
+    public void setPm10(String pm10) {
+        this.pm10 = pm10;
+    }
+    public String getPm25() {
+        return this.pm25;
+    }
+    public void setPm25(String pm25) {
+        this.pm25 = pm25;
+    }
+    public String getQuality() {
+        return this.quality;
+    }
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+    public String getSo2() {
+        return this.so2;
+    }
+    public void setSo2(String so2) {
+        this.so2 = so2;
+    }
+    public String getMCityName() {
+        return this.mCityName;
+    }
+    public void setMCityName(String mCityName) {
+        this.mCityName = mCityName;
+    }
+    public String getCityId() {
+        return this.cityId;
+    }
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
+    public String getLocalTime() {
+        return this.localTime;
+    }
+    public void setLocalTime(String localTime) {
+        this.localTime = localTime;
+    }
+    public String getUtcTime() {
+        return this.utcTime;
+    }
+    public void setUtcTime(String utcTime) {
+        this.utcTime = utcTime;
+    }
+    public String getCode() {
+        return this.code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public String getCodeDay() {
+        return this.codeDay;
+    }
+    public void setCodeDay(String codeDay) {
+        this.codeDay = codeDay;
+    }
+    public String getCodeNight() {
+        return this.codeNight;
+    }
+    public void setCodeNight(String codeNight) {
+        this.codeNight = codeNight;
+    }
+    public String getDescriptionDay() {
+        return this.descriptionDay;
+    }
+    public void setDescriptionDay(String descriptionDay) {
+        this.descriptionDay = descriptionDay;
+    }
+    public String getDescriptionNight() {
+        return this.descriptionNight;
+    }
+    public void setDescriptionNight(String descriptionNight) {
+        this.descriptionNight = descriptionNight;
+    }
+    public String getSendibleTemp() {
+        return this.sendibleTemp;
+    }
+    public void setSendibleTemp(String sendibleTemp) {
+        this.sendibleTemp = sendibleTemp;
+    }
+    public String getHumidity() {
+        return this.humidity;
+    }
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+    public String getPrecipitation() {
+        return this.precipitation;
+    }
+    public void setPrecipitation(String precipitation) {
+        this.precipitation = precipitation;
+    }
+    public String getAirPressure() {
+        return this.airPressure;
+    }
+    public void setAirPressure(String airPressure) {
+        this.airPressure = airPressure;
+    }
+    public String getTemperature() {
+        return this.temperature;
+    }
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+    public String getVisibility() {
+        return this.visibility;
+    }
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
+    }
+    public String getWindDegree() {
+        return this.windDegree;
+    }
+    public void setWindDegree(String windDegree) {
+        this.windDegree = windDegree;
+    }
+    public String getWindDirection() {
+        return this.windDirection;
+    }
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
+    }
+    public String getWindPower() {
+        return this.windPower;
+    }
+    public void setWindPower(String windPower) {
+        this.windPower = windPower;
+    }
+    public String getWindSpeed() {
+        return this.windSpeed;
+    }
+    public void setWindSpeed(String windSpeed) {
+        this.windSpeed = windSpeed;
+    }
 }

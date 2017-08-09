@@ -33,78 +33,48 @@ import java.util.Arrays;
 /**
  * Created by koma on 7/19/17.
  */
-@Entity(nameInDb = "now_info")
 public class NowInfo implements Serializable {
     private static final long serialVersionUID = 7523967970034938910L;
-    @Id(autoincrement = true)
-    private Long id;
-
     /**
      * weather condition info
      */
-    @Transient
     @SerializedName("cond")
     private ConditionInfo conditionInfo;
     /**
      * sendible temperature
      */
-    @Property(nameInDb = "fl")
     @SerializedName("fl")
     private String sendibleTemp;
     /**
      * relative humidity
      */
-    @Property(nameInDb = "hum")
     @SerializedName("hum")
     private String humidity;
     /**
      * amount of precipitation
      */
-    @Property(nameInDb = "pcpn")
     @SerializedName("pcpn")
     private String precipitation;
     /**
      * air pressure
      */
-    @Property(nameInDb = "pres")
     @SerializedName("pres")
     private String airPressure;
     /**
      * temperature
      */
-    @Property(nameInDb = "tmp")
     @SerializedName("tmp")
     private String temperature;
     /**
      * visibility
      */
-    @Property(nameInDb = "vis")
     @SerializedName("vis")
     private String mVisibility;
     /**
      * wind info
      */
-    @Convert(converter = WindInfoConverter.class, columnType = String.class)
     @SerializedName("wind")
     private WindInfo mWindInfo;
-
-    @Generated(hash = 333988543)
-    public NowInfo(Long id, String sendibleTemp, String humidity,
-                   String precipitation, String airPressure, String temperature,
-                   String mVisibility, WindInfo mWindInfo) {
-        this.id = id;
-        this.sendibleTemp = sendibleTemp;
-        this.humidity = humidity;
-        this.precipitation = precipitation;
-        this.airPressure = airPressure;
-        this.temperature = temperature;
-        this.mVisibility = mVisibility;
-        this.mWindInfo = mWindInfo;
-    }
-
-    @Generated(hash = 289332803)
-    public NowInfo() {
-    }
 
     @Override
     public String toString() {
@@ -148,14 +118,6 @@ public class NowInfo implements Serializable {
     public int hashCode() {
         return Arrays.hashCode(new Object[]{conditionInfo, sendibleTemp, humidity, precipitation,
                 airPressure, temperature, mVisibility, mWindInfo});
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getSendibleTemp() {

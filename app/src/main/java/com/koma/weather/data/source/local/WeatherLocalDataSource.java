@@ -17,7 +17,6 @@ package com.koma.weather.data.source.local;
 
 import android.content.Context;
 
-import com.koma.weather.data.model.BasicInfoDao;
 import com.koma.weather.data.model.DaoSession;
 import com.koma.weather.data.model.Weather;
 import com.koma.weather.data.source.WeatherDataSource;
@@ -47,7 +46,7 @@ public class WeatherLocalDataSource implements WeatherDataSource {
 
     @Override
     public Flowable<Weather> getWeather(String city) {
-        mDaoSession.getBasicInfoDao().queryBuilder().where(BasicInfoDao.Properties.CityName.eq(city)).build();
+
         return null;
     }
 

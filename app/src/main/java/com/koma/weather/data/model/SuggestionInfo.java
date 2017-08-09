@@ -28,51 +28,22 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * Created by koma on 7/19/17.
  */
-@Entity(nameInDb = "suggestion_info")
 public class SuggestionInfo implements Serializable {
     private static final long serialVersionUID = 7523967970034938912L;
-    @Id(autoincrement = true)
-    private Long id;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("comf")
     private BaseInfo comforInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("cw")
     private BaseInfo carWashInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("drsg")
     private BaseInfo dressInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("flu")
     private BaseInfo coldInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("sport")
     private BaseInfo sportInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("trav")
     private BaseInfo travelInfo;
-    @Convert(converter = BaseInfoConverter.class, columnType = String.class)
     @SerializedName("uv")
     private BaseInfo ultravioletInfo;
-
-
-    @Generated(hash = 60063877)
-    public SuggestionInfo(Long id, BaseInfo comforInfo, BaseInfo carWashInfo,
-            BaseInfo dressInfo, BaseInfo coldInfo, BaseInfo sportInfo,
-            BaseInfo travelInfo, BaseInfo ultravioletInfo) {
-        this.id = id;
-        this.comforInfo = comforInfo;
-        this.carWashInfo = carWashInfo;
-        this.dressInfo = dressInfo;
-        this.coldInfo = coldInfo;
-        this.sportInfo = sportInfo;
-        this.travelInfo = travelInfo;
-        this.ultravioletInfo = ultravioletInfo;
-    }
-
-    @Generated(hash = 1403800140)
-    public SuggestionInfo() {
-    }
 
 
     @Override
@@ -87,14 +58,6 @@ public class SuggestionInfo implements Serializable {
                 .append(this.ultravioletInfo.toString());
 
         return builder.toString();
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public BaseInfo getComforInfo() {

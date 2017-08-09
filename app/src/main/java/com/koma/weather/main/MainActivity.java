@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -83,8 +82,7 @@ public class MainActivity extends BasePermissionActivity implements
 
     @OnClick(R.id.fab)
     void showSnackbar(View view) {
-        Intent intent = new Intent(MainActivity.this, AddCityActivity.class);
-        startActivity(intent);
+        launchAddCityActivity();
     }
 
     @Override
@@ -178,6 +176,7 @@ public class MainActivity extends BasePermissionActivity implements
         int id = item.getItemId();
 
         if (id == R.id.nav_add) {
+            launchAddCityActivity();
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
@@ -191,6 +190,11 @@ public class MainActivity extends BasePermissionActivity implements
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void launchAddCityActivity() {
+        Intent intent = new Intent(MainActivity.this, AddCityActivity.class);
+        startActivity(intent);
     }
 
     @Override

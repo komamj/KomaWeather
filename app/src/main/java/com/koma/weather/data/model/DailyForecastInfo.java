@@ -32,97 +32,55 @@ import java.io.Serializable;
 /**
  * Created by koma on 7/19/17.
  */
-@Entity(nameInDb = "daily_forcast")
 public class DailyForecastInfo implements Serializable {
     private static final long serialVersionUID = 7523967970034938906L;
-    @Id(autoincrement = true)
-    private Long id;
     /**
      * relative humidity
      */
-    @Property(nameInDb = "hum")
     @SerializedName("hum")
     public String humidity;
     /**
      * precipitation
      */
-    @Property(nameInDb = "pcpn")
     @SerializedName("pcpn")
     public String mPrecipitation;
     /**
      * precipitation probability
      */
-    @Property(nameInDb = "pop")
     @SerializedName("pop")
     public String mPcpnProbability;
     /**
      * air pressure
      */
-    @Property(nameInDb = "press")
     @SerializedName("pres")
     public String mAirPressure;
     /**
      * temperature
      */
-    @Convert(converter = TemperatureConverter.class, columnType = String.class)
     @SerializedName("tmp")
     public TemperatureInfo mTemperatureInfo;
     /**
      * weather situation
      */
-    @Convert(converter = DailyForcastConditionConverter.class, columnType = String.class)
     @SerializedName("cond")
     private DailyForecastCondition mConditionInfo;
     /**
      * date
      */
-    @Property(nameInDb = "date")
     @SerializedName("date")
     private String mDate;
     /**
      * visibility
      */
-    @Property(nameInDb = "vis")
     @SerializedName("vis")
     private String mVisibility;
     /**
      * wind info
      */
-    @Convert(converter = WindInfoConverter.class, columnType = String.class)
     @SerializedName("wind")
     private WindInfo mWindInfo;
-    @Transient
     @SerializedName("astro")
     private AstroInfo mAstroInfo;
-
-    @Generated(hash = 810926863)
-    public DailyForecastInfo(Long id, String humidity, String mPrecipitation,
-            String mPcpnProbability, String mAirPressure, TemperatureInfo mTemperatureInfo,
-            DailyForecastCondition mConditionInfo, String mDate, String mVisibility,
-            WindInfo mWindInfo) {
-        this.id = id;
-        this.humidity = humidity;
-        this.mPrecipitation = mPrecipitation;
-        this.mPcpnProbability = mPcpnProbability;
-        this.mAirPressure = mAirPressure;
-        this.mTemperatureInfo = mTemperatureInfo;
-        this.mConditionInfo = mConditionInfo;
-        this.mDate = mDate;
-        this.mVisibility = mVisibility;
-        this.mWindInfo = mWindInfo;
-    }
-
-    @Generated(hash = 315318944)
-    public DailyForecastInfo() {
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getHumidity() {
         return this.humidity;

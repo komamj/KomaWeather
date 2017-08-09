@@ -51,4 +51,9 @@ public class CityPresenter implements CityContract.Presenter {
     public void unSubscribe() {
 
     }
+
+    @Override
+    public void loadCities() {
+
+    }
 }

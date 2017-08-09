@@ -16,16 +16,18 @@
 package com.koma.weather.city;
 
 import android.os.Bundle;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 
 import com.koma.weather.R;
 import com.koma.weather.base.BaseFragment;
+import com.koma.weather.data.model.City;
+import com.koma.weather.util.LogUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -38,6 +40,9 @@ public class CityFragment extends BaseFragment implements CityContract.View {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+    @BindView(R.id.view_stub)
+    ViewStub mViewStub;
+    private ContentLoadingProgressBar mProgressBar;
 
     private CityContract.Presenter mPresenter;
 
@@ -55,6 +60,10 @@ public class CityFragment extends BaseFragment implements CityContract.View {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mViewStub.inflate();
+
+        mProgressBar = (ContentLoadingProgressBar) view.findViewById(R.id.progress_bar);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -80,5 +89,40 @@ public class CityFragment extends BaseFragment implements CityContract.View {
     @Override
     public void setPresenter(CityContract.Presenter presenter) {
         mPresenter = presenter;
+    }
+
+    @Override
+    public void setLoadingIndicator(boolean active) {
+        LogUtils.i(TAG, "setLoadingIndicator active : " + active);
+
+        if (active) {
+            if (mProgressBar != null) {
+                mProgressBar.show();
+            }
+        } else {
+            if (mProgressBar != null) {
+                mProgressBar.hide();
+            }
+        }
+    }
+
+    @Override
+    public void showCities(List<City> cities) {
+
+    }
+
+    @Override
+    public boolean isActive() {
+        return this.isAdded();
+    }
+
+    @Override
+    public void showSuccessfullyLoadedMessage() {
+
+    }
+
+    @Override
+    public void showLoadingCitiesError() {
+
     }
 }

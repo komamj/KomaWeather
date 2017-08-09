@@ -16,36 +16,17 @@
 package com.koma.weather.data.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.koma.weather.util.CityInfoConverter;
-
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 
 import java.io.Serializable;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by koma on 7/19/17.
  */
-@Entity(nameInDb = "aqi_info")
 public class AqiInfo implements Serializable {
     private static final long serialVersionUID = 7523967970034938900L;
-    @Id(autoincrement = true)
-    private Long id;
-    @Convert(converter = CityInfoConverter.class, columnType = String.class)
     @SerializedName("city")
     private CityInfo cityInfo;
 
-    @Generated(hash = 1548455190)
-    public AqiInfo(Long id, CityInfo cityInfo) {
-        this.id = id;
-        this.cityInfo = cityInfo;
-    }
-
-    @Generated(hash = 489475186)
-    public AqiInfo() {
-    }
 
     @Override
     public String toString() {
@@ -53,14 +34,6 @@ public class AqiInfo implements Serializable {
         builder.append("aqi :").append(this.cityInfo.toString());
 
         return builder.toString();
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public CityInfo getCityInfo() {

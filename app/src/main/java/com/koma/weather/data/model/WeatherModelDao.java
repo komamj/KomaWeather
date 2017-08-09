@@ -23,39 +23,39 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
      */
     public static class Properties {
         public final static Property MId = new Property(0, Long.class, "mId", true, "_id");
-        public final static Property MCityName = new Property(1, String.class, "mCityName", false, "city_name");
-        public final static Property MCityId = new Property(2, String.class, "mCityId", false, "city_id");
-        public final static Property MLocalTime = new Property(3, String.class, "mLocalTime", false, "date_local");
-        public final static Property MUtcTime = new Property(4, String.class, "mUtcTime", false, "date_utc");
-        public final static Property MCode = new Property(5, String.class, "mCode", false, "code");
-        public final static Property MDescription = new Property(6, String.class, "mDescription", false, "txt");
-        public final static Property MCodeDay = new Property(7, String.class, "mCodeDay", false, "code_d");
-        public final static Property MCodeNight = new Property(8, String.class, "mCodeNight", false, "code_n");
-        public final static Property MDescriptionDay = new Property(9, String.class, "mDescriptionDay", false, "txt_d");
-        public final static Property MDescriptionNight = new Property(10, String.class, "mDescriptionNight", false, "txt_n");
-        public final static Property MSendibleTemp = new Property(11, String.class, "mSendibleTemp", false, "fl");
-        public final static Property MHumidity = new Property(12, String.class, "mHumidity", false, "hum");
-        public final static Property MPrecipitation = new Property(13, String.class, "mPrecipitation", false, "pcpn");
-        public final static Property MAirPressure = new Property(14, String.class, "mAirPressure", false, "pres");
-        public final static Property MTemperature = new Property(15, String.class, "mTemperature", false, "tmp");
-        public final static Property MVisibility = new Property(16, String.class, "mVisibility", false, "vis");
-        public final static Property MWindDegree = new Property(17, String.class, "mWindDegree", false, "deg");
-        public final static Property MWindDirection = new Property(18, String.class, "mWindDirection", false, "dir");
-        public final static Property MWindPower = new Property(19, String.class, "mWindPower", false, "sc");
-        public final static Property MWindSpeed = new Property(20, String.class, "mWindSpeed", false, "spd");
-        public final static Property MAqi = new Property(21, String.class, "mAqi", false, "aqi");
-        public final static Property MCO = new Property(22, String.class, "mCO", false, "co");
-        public final static Property MNO2 = new Property(23, String.class, "mNO2", false, "no2");
-        public final static Property MO3 = new Property(24, String.class, "mO3", false, "o3");
-        public final static Property MPM10 = new Property(25, String.class, "mPM10", false, "pm10");
-        public final static Property MPM25 = new Property(26, String.class, "mPM25", false, "pm25");
-        public final static Property MQuality = new Property(27, String.class, "mQuality", false, "qlty");
-        public final static Property MSO2 = new Property(28, String.class, "mSO2", false, "so2");
-        public final static Property MLevel = new Property(29, String.class, "mLevel", false, "M_LEVEL");
-        public final static Property MStatus = new Property(30, String.class, "mStatus", false, "M_STATUS");
-        public final static Property MTitle = new Property(31, String.class, "mTitle", false, "M_TITLE");
-        public final static Property MWarningDescription = new Property(32, String.class, "mWarningDescription", false, "M_WARNING_DESCRIPTION");
-        public final static Property MType = new Property(33, String.class, "mType", false, "M_TYPE");
+        public final static Property Level = new Property(1, String.class, "level", false, "level");
+        public final static Property Status = new Property(2, String.class, "status", false, "status");
+        public final static Property Title = new Property(3, String.class, "title", false, "title");
+        public final static Property WarningDescription = new Property(4, String.class, "warningDescription", false, "warning_description");
+        public final static Property Type = new Property(5, String.class, "type", false, "warning_type");
+        public final static Property Aqi = new Property(6, String.class, "aqi", false, "aqi");
+        public final static Property Co = new Property(7, String.class, "co", false, "co");
+        public final static Property No2 = new Property(8, String.class, "no2", false, "no2");
+        public final static Property O3 = new Property(9, String.class, "o3", false, "o3");
+        public final static Property Pm10 = new Property(10, String.class, "pm10", false, "pm10");
+        public final static Property Pm25 = new Property(11, String.class, "pm25", false, "pm25");
+        public final static Property Quality = new Property(12, String.class, "quality", false, "qlty");
+        public final static Property So2 = new Property(13, String.class, "so2", false, "so2");
+        public final static Property MCityName = new Property(14, String.class, "mCityName", false, "city_name");
+        public final static Property CityId = new Property(15, String.class, "cityId", false, "city_id");
+        public final static Property LocalTime = new Property(16, String.class, "localTime", false, "local_time");
+        public final static Property UtcTime = new Property(17, String.class, "utcTime", false, "utc_time");
+        public final static Property Code = new Property(18, String.class, "code", false, "code");
+        public final static Property Description = new Property(19, String.class, "description", false, "txt");
+        public final static Property CodeDay = new Property(20, String.class, "codeDay", false, "code_d");
+        public final static Property CodeNight = new Property(21, String.class, "codeNight", false, "code_n");
+        public final static Property DescriptionDay = new Property(22, String.class, "descriptionDay", false, "txt_d");
+        public final static Property DescriptionNight = new Property(23, String.class, "descriptionNight", false, "txt_n");
+        public final static Property SendibleTemp = new Property(24, String.class, "sendibleTemp", false, "fl");
+        public final static Property Humidity = new Property(25, String.class, "humidity", false, "hum");
+        public final static Property Precipitation = new Property(26, String.class, "precipitation", false, "pcpn");
+        public final static Property AirPressure = new Property(27, String.class, "airPressure", false, "pres");
+        public final static Property Temperature = new Property(28, String.class, "temperature", false, "tmp");
+        public final static Property Visibility = new Property(29, String.class, "visibility", false, "vis");
+        public final static Property WindDegree = new Property(30, String.class, "windDegree", false, "deg");
+        public final static Property WindDirection = new Property(31, String.class, "windDirection", false, "dir");
+        public final static Property WindPower = new Property(32, String.class, "windPower", false, "sc");
+        public final static Property WindSpeed = new Property(33, String.class, "windSpeed", false, "spd");
     }
 
 
@@ -72,39 +72,39 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"weather\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: mId
-                "\"city_name\" TEXT," + // 1: mCityName
-                "\"city_id\" TEXT," + // 2: mCityId
-                "\"date_local\" TEXT," + // 3: mLocalTime
-                "\"date_utc\" TEXT," + // 4: mUtcTime
-                "\"code\" TEXT," + // 5: mCode
-                "\"txt\" TEXT," + // 6: mDescription
-                "\"code_d\" TEXT," + // 7: mCodeDay
-                "\"code_n\" TEXT," + // 8: mCodeNight
-                "\"txt_d\" TEXT," + // 9: mDescriptionDay
-                "\"txt_n\" TEXT," + // 10: mDescriptionNight
-                "\"fl\" TEXT," + // 11: mSendibleTemp
-                "\"hum\" TEXT," + // 12: mHumidity
-                "\"pcpn\" TEXT," + // 13: mPrecipitation
-                "\"pres\" TEXT," + // 14: mAirPressure
-                "\"tmp\" TEXT," + // 15: mTemperature
-                "\"vis\" TEXT," + // 16: mVisibility
-                "\"deg\" TEXT," + // 17: mWindDegree
-                "\"dir\" TEXT," + // 18: mWindDirection
-                "\"sc\" TEXT," + // 19: mWindPower
-                "\"spd\" TEXT," + // 20: mWindSpeed
-                "\"aqi\" TEXT," + // 21: mAqi
-                "\"co\" TEXT," + // 22: mCO
-                "\"no2\" TEXT," + // 23: mNO2
-                "\"o3\" TEXT," + // 24: mO3
-                "\"pm10\" TEXT," + // 25: mPM10
-                "\"pm25\" TEXT," + // 26: mPM25
-                "\"qlty\" TEXT," + // 27: mQuality
-                "\"so2\" TEXT," + // 28: mSO2
-                "\"M_LEVEL\" TEXT," + // 29: mLevel
-                "\"M_STATUS\" TEXT," + // 30: mStatus
-                "\"M_TITLE\" TEXT," + // 31: mTitle
-                "\"M_WARNING_DESCRIPTION\" TEXT," + // 32: mWarningDescription
-                "\"M_TYPE\" TEXT);"); // 33: mType
+                "\"level\" TEXT," + // 1: level
+                "\"status\" TEXT," + // 2: status
+                "\"title\" TEXT," + // 3: title
+                "\"warning_description\" TEXT," + // 4: warningDescription
+                "\"warning_type\" TEXT," + // 5: type
+                "\"aqi\" TEXT," + // 6: aqi
+                "\"co\" TEXT," + // 7: co
+                "\"no2\" TEXT," + // 8: no2
+                "\"o3\" TEXT," + // 9: o3
+                "\"pm10\" TEXT," + // 10: pm10
+                "\"pm25\" TEXT," + // 11: pm25
+                "\"qlty\" TEXT," + // 12: quality
+                "\"so2\" TEXT," + // 13: so2
+                "\"city_name\" TEXT," + // 14: mCityName
+                "\"city_id\" TEXT," + // 15: cityId
+                "\"local_time\" TEXT," + // 16: localTime
+                "\"utc_time\" TEXT," + // 17: utcTime
+                "\"code\" TEXT," + // 18: code
+                "\"txt\" TEXT," + // 19: description
+                "\"code_d\" TEXT," + // 20: codeDay
+                "\"code_n\" TEXT," + // 21: codeNight
+                "\"txt_d\" TEXT," + // 22: descriptionDay
+                "\"txt_n\" TEXT," + // 23: descriptionNight
+                "\"fl\" TEXT," + // 24: sendibleTemp
+                "\"hum\" TEXT," + // 25: humidity
+                "\"pcpn\" TEXT," + // 26: precipitation
+                "\"pres\" TEXT," + // 27: airPressure
+                "\"tmp\" TEXT," + // 28: temperature
+                "\"vis\" TEXT," + // 29: visibility
+                "\"deg\" TEXT," + // 30: windDegree
+                "\"dir\" TEXT," + // 31: windDirection
+                "\"sc\" TEXT," + // 32: windPower
+                "\"spd\" TEXT);"); // 33: windSpeed
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "IDX_weather_city_id ON \"weather\"" +
                 " (\"city_id\" ASC);");
@@ -125,169 +125,169 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
             stmt.bindLong(1, mId);
         }
  
+        String level = entity.getLevel();
+        if (level != null) {
+            stmt.bindString(2, level);
+        }
+ 
+        String status = entity.getStatus();
+        if (status != null) {
+            stmt.bindString(3, status);
+        }
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(4, title);
+        }
+ 
+        String warningDescription = entity.getWarningDescription();
+        if (warningDescription != null) {
+            stmt.bindString(5, warningDescription);
+        }
+ 
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(6, type);
+        }
+ 
+        String aqi = entity.getAqi();
+        if (aqi != null) {
+            stmt.bindString(7, aqi);
+        }
+ 
+        String co = entity.getCo();
+        if (co != null) {
+            stmt.bindString(8, co);
+        }
+ 
+        String no2 = entity.getNo2();
+        if (no2 != null) {
+            stmt.bindString(9, no2);
+        }
+ 
+        String o3 = entity.getO3();
+        if (o3 != null) {
+            stmt.bindString(10, o3);
+        }
+ 
+        String pm10 = entity.getPm10();
+        if (pm10 != null) {
+            stmt.bindString(11, pm10);
+        }
+ 
+        String pm25 = entity.getPm25();
+        if (pm25 != null) {
+            stmt.bindString(12, pm25);
+        }
+ 
+        String quality = entity.getQuality();
+        if (quality != null) {
+            stmt.bindString(13, quality);
+        }
+ 
+        String so2 = entity.getSo2();
+        if (so2 != null) {
+            stmt.bindString(14, so2);
+        }
+ 
         String mCityName = entity.getMCityName();
         if (mCityName != null) {
-            stmt.bindString(2, mCityName);
+            stmt.bindString(15, mCityName);
         }
  
-        String mCityId = entity.getMCityId();
-        if (mCityId != null) {
-            stmt.bindString(3, mCityId);
+        String cityId = entity.getCityId();
+        if (cityId != null) {
+            stmt.bindString(16, cityId);
         }
  
-        String mLocalTime = entity.getMLocalTime();
-        if (mLocalTime != null) {
-            stmt.bindString(4, mLocalTime);
+        String localTime = entity.getLocalTime();
+        if (localTime != null) {
+            stmt.bindString(17, localTime);
         }
  
-        String mUtcTime = entity.getMUtcTime();
-        if (mUtcTime != null) {
-            stmt.bindString(5, mUtcTime);
+        String utcTime = entity.getUtcTime();
+        if (utcTime != null) {
+            stmt.bindString(18, utcTime);
         }
  
-        String mCode = entity.getMCode();
-        if (mCode != null) {
-            stmt.bindString(6, mCode);
+        String code = entity.getCode();
+        if (code != null) {
+            stmt.bindString(19, code);
         }
  
-        String mDescription = entity.getMDescription();
-        if (mDescription != null) {
-            stmt.bindString(7, mDescription);
+        String description = entity.getDescription();
+        if (description != null) {
+            stmt.bindString(20, description);
         }
  
-        String mCodeDay = entity.getMCodeDay();
-        if (mCodeDay != null) {
-            stmt.bindString(8, mCodeDay);
+        String codeDay = entity.getCodeDay();
+        if (codeDay != null) {
+            stmt.bindString(21, codeDay);
         }
  
-        String mCodeNight = entity.getMCodeNight();
-        if (mCodeNight != null) {
-            stmt.bindString(9, mCodeNight);
+        String codeNight = entity.getCodeNight();
+        if (codeNight != null) {
+            stmt.bindString(22, codeNight);
         }
  
-        String mDescriptionDay = entity.getMDescriptionDay();
-        if (mDescriptionDay != null) {
-            stmt.bindString(10, mDescriptionDay);
+        String descriptionDay = entity.getDescriptionDay();
+        if (descriptionDay != null) {
+            stmt.bindString(23, descriptionDay);
         }
  
-        String mDescriptionNight = entity.getMDescriptionNight();
-        if (mDescriptionNight != null) {
-            stmt.bindString(11, mDescriptionNight);
+        String descriptionNight = entity.getDescriptionNight();
+        if (descriptionNight != null) {
+            stmt.bindString(24, descriptionNight);
         }
  
-        String mSendibleTemp = entity.getMSendibleTemp();
-        if (mSendibleTemp != null) {
-            stmt.bindString(12, mSendibleTemp);
+        String sendibleTemp = entity.getSendibleTemp();
+        if (sendibleTemp != null) {
+            stmt.bindString(25, sendibleTemp);
         }
  
-        String mHumidity = entity.getMHumidity();
-        if (mHumidity != null) {
-            stmt.bindString(13, mHumidity);
+        String humidity = entity.getHumidity();
+        if (humidity != null) {
+            stmt.bindString(26, humidity);
         }
  
-        String mPrecipitation = entity.getMPrecipitation();
-        if (mPrecipitation != null) {
-            stmt.bindString(14, mPrecipitation);
+        String precipitation = entity.getPrecipitation();
+        if (precipitation != null) {
+            stmt.bindString(27, precipitation);
         }
  
-        String mAirPressure = entity.getMAirPressure();
-        if (mAirPressure != null) {
-            stmt.bindString(15, mAirPressure);
+        String airPressure = entity.getAirPressure();
+        if (airPressure != null) {
+            stmt.bindString(28, airPressure);
         }
  
-        String mTemperature = entity.getMTemperature();
-        if (mTemperature != null) {
-            stmt.bindString(16, mTemperature);
+        String temperature = entity.getTemperature();
+        if (temperature != null) {
+            stmt.bindString(29, temperature);
         }
  
-        String mVisibility = entity.getMVisibility();
-        if (mVisibility != null) {
-            stmt.bindString(17, mVisibility);
+        String visibility = entity.getVisibility();
+        if (visibility != null) {
+            stmt.bindString(30, visibility);
         }
  
-        String mWindDegree = entity.getMWindDegree();
-        if (mWindDegree != null) {
-            stmt.bindString(18, mWindDegree);
+        String windDegree = entity.getWindDegree();
+        if (windDegree != null) {
+            stmt.bindString(31, windDegree);
         }
  
-        String mWindDirection = entity.getMWindDirection();
-        if (mWindDirection != null) {
-            stmt.bindString(19, mWindDirection);
+        String windDirection = entity.getWindDirection();
+        if (windDirection != null) {
+            stmt.bindString(32, windDirection);
         }
  
-        String mWindPower = entity.getMWindPower();
-        if (mWindPower != null) {
-            stmt.bindString(20, mWindPower);
+        String windPower = entity.getWindPower();
+        if (windPower != null) {
+            stmt.bindString(33, windPower);
         }
  
-        String mWindSpeed = entity.getMWindSpeed();
-        if (mWindSpeed != null) {
-            stmt.bindString(21, mWindSpeed);
-        }
- 
-        String mAqi = entity.getMAqi();
-        if (mAqi != null) {
-            stmt.bindString(22, mAqi);
-        }
- 
-        String mCO = entity.getMCO();
-        if (mCO != null) {
-            stmt.bindString(23, mCO);
-        }
- 
-        String mNO2 = entity.getMNO2();
-        if (mNO2 != null) {
-            stmt.bindString(24, mNO2);
-        }
- 
-        String mO3 = entity.getMO3();
-        if (mO3 != null) {
-            stmt.bindString(25, mO3);
-        }
- 
-        String mPM10 = entity.getMPM10();
-        if (mPM10 != null) {
-            stmt.bindString(26, mPM10);
-        }
- 
-        String mPM25 = entity.getMPM25();
-        if (mPM25 != null) {
-            stmt.bindString(27, mPM25);
-        }
- 
-        String mQuality = entity.getMQuality();
-        if (mQuality != null) {
-            stmt.bindString(28, mQuality);
-        }
- 
-        String mSO2 = entity.getMSO2();
-        if (mSO2 != null) {
-            stmt.bindString(29, mSO2);
-        }
- 
-        String mLevel = entity.getMLevel();
-        if (mLevel != null) {
-            stmt.bindString(30, mLevel);
-        }
- 
-        String mStatus = entity.getMStatus();
-        if (mStatus != null) {
-            stmt.bindString(31, mStatus);
-        }
- 
-        String mTitle = entity.getMTitle();
-        if (mTitle != null) {
-            stmt.bindString(32, mTitle);
-        }
- 
-        String mWarningDescription = entity.getMWarningDescription();
-        if (mWarningDescription != null) {
-            stmt.bindString(33, mWarningDescription);
-        }
- 
-        String mType = entity.getMType();
-        if (mType != null) {
-            stmt.bindString(34, mType);
+        String windSpeed = entity.getWindSpeed();
+        if (windSpeed != null) {
+            stmt.bindString(34, windSpeed);
         }
     }
 
@@ -300,169 +300,169 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
             stmt.bindLong(1, mId);
         }
  
+        String level = entity.getLevel();
+        if (level != null) {
+            stmt.bindString(2, level);
+        }
+ 
+        String status = entity.getStatus();
+        if (status != null) {
+            stmt.bindString(3, status);
+        }
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(4, title);
+        }
+ 
+        String warningDescription = entity.getWarningDescription();
+        if (warningDescription != null) {
+            stmt.bindString(5, warningDescription);
+        }
+ 
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(6, type);
+        }
+ 
+        String aqi = entity.getAqi();
+        if (aqi != null) {
+            stmt.bindString(7, aqi);
+        }
+ 
+        String co = entity.getCo();
+        if (co != null) {
+            stmt.bindString(8, co);
+        }
+ 
+        String no2 = entity.getNo2();
+        if (no2 != null) {
+            stmt.bindString(9, no2);
+        }
+ 
+        String o3 = entity.getO3();
+        if (o3 != null) {
+            stmt.bindString(10, o3);
+        }
+ 
+        String pm10 = entity.getPm10();
+        if (pm10 != null) {
+            stmt.bindString(11, pm10);
+        }
+ 
+        String pm25 = entity.getPm25();
+        if (pm25 != null) {
+            stmt.bindString(12, pm25);
+        }
+ 
+        String quality = entity.getQuality();
+        if (quality != null) {
+            stmt.bindString(13, quality);
+        }
+ 
+        String so2 = entity.getSo2();
+        if (so2 != null) {
+            stmt.bindString(14, so2);
+        }
+ 
         String mCityName = entity.getMCityName();
         if (mCityName != null) {
-            stmt.bindString(2, mCityName);
+            stmt.bindString(15, mCityName);
         }
  
-        String mCityId = entity.getMCityId();
-        if (mCityId != null) {
-            stmt.bindString(3, mCityId);
+        String cityId = entity.getCityId();
+        if (cityId != null) {
+            stmt.bindString(16, cityId);
         }
  
-        String mLocalTime = entity.getMLocalTime();
-        if (mLocalTime != null) {
-            stmt.bindString(4, mLocalTime);
+        String localTime = entity.getLocalTime();
+        if (localTime != null) {
+            stmt.bindString(17, localTime);
         }
  
-        String mUtcTime = entity.getMUtcTime();
-        if (mUtcTime != null) {
-            stmt.bindString(5, mUtcTime);
+        String utcTime = entity.getUtcTime();
+        if (utcTime != null) {
+            stmt.bindString(18, utcTime);
         }
  
-        String mCode = entity.getMCode();
-        if (mCode != null) {
-            stmt.bindString(6, mCode);
+        String code = entity.getCode();
+        if (code != null) {
+            stmt.bindString(19, code);
         }
  
-        String mDescription = entity.getMDescription();
-        if (mDescription != null) {
-            stmt.bindString(7, mDescription);
+        String description = entity.getDescription();
+        if (description != null) {
+            stmt.bindString(20, description);
         }
  
-        String mCodeDay = entity.getMCodeDay();
-        if (mCodeDay != null) {
-            stmt.bindString(8, mCodeDay);
+        String codeDay = entity.getCodeDay();
+        if (codeDay != null) {
+            stmt.bindString(21, codeDay);
         }
  
-        String mCodeNight = entity.getMCodeNight();
-        if (mCodeNight != null) {
-            stmt.bindString(9, mCodeNight);
+        String codeNight = entity.getCodeNight();
+        if (codeNight != null) {
+            stmt.bindString(22, codeNight);
         }
  
-        String mDescriptionDay = entity.getMDescriptionDay();
-        if (mDescriptionDay != null) {
-            stmt.bindString(10, mDescriptionDay);
+        String descriptionDay = entity.getDescriptionDay();
+        if (descriptionDay != null) {
+            stmt.bindString(23, descriptionDay);
         }
  
-        String mDescriptionNight = entity.getMDescriptionNight();
-        if (mDescriptionNight != null) {
-            stmt.bindString(11, mDescriptionNight);
+        String descriptionNight = entity.getDescriptionNight();
+        if (descriptionNight != null) {
+            stmt.bindString(24, descriptionNight);
         }
  
-        String mSendibleTemp = entity.getMSendibleTemp();
-        if (mSendibleTemp != null) {
-            stmt.bindString(12, mSendibleTemp);
+        String sendibleTemp = entity.getSendibleTemp();
+        if (sendibleTemp != null) {
+            stmt.bindString(25, sendibleTemp);
         }
  
-        String mHumidity = entity.getMHumidity();
-        if (mHumidity != null) {
-            stmt.bindString(13, mHumidity);
+        String humidity = entity.getHumidity();
+        if (humidity != null) {
+            stmt.bindString(26, humidity);
         }
  
-        String mPrecipitation = entity.getMPrecipitation();
-        if (mPrecipitation != null) {
-            stmt.bindString(14, mPrecipitation);
+        String precipitation = entity.getPrecipitation();
+        if (precipitation != null) {
+            stmt.bindString(27, precipitation);
         }
  
-        String mAirPressure = entity.getMAirPressure();
-        if (mAirPressure != null) {
-            stmt.bindString(15, mAirPressure);
+        String airPressure = entity.getAirPressure();
+        if (airPressure != null) {
+            stmt.bindString(28, airPressure);
         }
  
-        String mTemperature = entity.getMTemperature();
-        if (mTemperature != null) {
-            stmt.bindString(16, mTemperature);
+        String temperature = entity.getTemperature();
+        if (temperature != null) {
+            stmt.bindString(29, temperature);
         }
  
-        String mVisibility = entity.getMVisibility();
-        if (mVisibility != null) {
-            stmt.bindString(17, mVisibility);
+        String visibility = entity.getVisibility();
+        if (visibility != null) {
+            stmt.bindString(30, visibility);
         }
  
-        String mWindDegree = entity.getMWindDegree();
-        if (mWindDegree != null) {
-            stmt.bindString(18, mWindDegree);
+        String windDegree = entity.getWindDegree();
+        if (windDegree != null) {
+            stmt.bindString(31, windDegree);
         }
  
-        String mWindDirection = entity.getMWindDirection();
-        if (mWindDirection != null) {
-            stmt.bindString(19, mWindDirection);
+        String windDirection = entity.getWindDirection();
+        if (windDirection != null) {
+            stmt.bindString(32, windDirection);
         }
  
-        String mWindPower = entity.getMWindPower();
-        if (mWindPower != null) {
-            stmt.bindString(20, mWindPower);
+        String windPower = entity.getWindPower();
+        if (windPower != null) {
+            stmt.bindString(33, windPower);
         }
  
-        String mWindSpeed = entity.getMWindSpeed();
-        if (mWindSpeed != null) {
-            stmt.bindString(21, mWindSpeed);
-        }
- 
-        String mAqi = entity.getMAqi();
-        if (mAqi != null) {
-            stmt.bindString(22, mAqi);
-        }
- 
-        String mCO = entity.getMCO();
-        if (mCO != null) {
-            stmt.bindString(23, mCO);
-        }
- 
-        String mNO2 = entity.getMNO2();
-        if (mNO2 != null) {
-            stmt.bindString(24, mNO2);
-        }
- 
-        String mO3 = entity.getMO3();
-        if (mO3 != null) {
-            stmt.bindString(25, mO3);
-        }
- 
-        String mPM10 = entity.getMPM10();
-        if (mPM10 != null) {
-            stmt.bindString(26, mPM10);
-        }
- 
-        String mPM25 = entity.getMPM25();
-        if (mPM25 != null) {
-            stmt.bindString(27, mPM25);
-        }
- 
-        String mQuality = entity.getMQuality();
-        if (mQuality != null) {
-            stmt.bindString(28, mQuality);
-        }
- 
-        String mSO2 = entity.getMSO2();
-        if (mSO2 != null) {
-            stmt.bindString(29, mSO2);
-        }
- 
-        String mLevel = entity.getMLevel();
-        if (mLevel != null) {
-            stmt.bindString(30, mLevel);
-        }
- 
-        String mStatus = entity.getMStatus();
-        if (mStatus != null) {
-            stmt.bindString(31, mStatus);
-        }
- 
-        String mTitle = entity.getMTitle();
-        if (mTitle != null) {
-            stmt.bindString(32, mTitle);
-        }
- 
-        String mWarningDescription = entity.getMWarningDescription();
-        if (mWarningDescription != null) {
-            stmt.bindString(33, mWarningDescription);
-        }
- 
-        String mType = entity.getMType();
-        if (mType != null) {
-            stmt.bindString(34, mType);
+        String windSpeed = entity.getWindSpeed();
+        if (windSpeed != null) {
+            stmt.bindString(34, windSpeed);
         }
     }
 
@@ -475,39 +475,39 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
     public WeatherModel readEntity(Cursor cursor, int offset) {
         WeatherModel entity = new WeatherModel( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // mId
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // mCityName
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // mCityId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // mLocalTime
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // mUtcTime
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // mCode
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // mDescription
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // mCodeDay
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // mCodeNight
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // mDescriptionDay
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // mDescriptionNight
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // mSendibleTemp
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // mHumidity
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // mPrecipitation
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // mAirPressure
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // mTemperature
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // mVisibility
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // mWindDegree
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // mWindDirection
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // mWindPower
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // mWindSpeed
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // mAqi
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // mCO
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // mNO2
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // mO3
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // mPM10
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // mPM25
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // mQuality
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // mSO2
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // mLevel
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // mStatus
-            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // mTitle
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // mWarningDescription
-            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33) // mType
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // level
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // status
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // title
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // warningDescription
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // type
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // aqi
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // co
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // no2
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // o3
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // pm10
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // pm25
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // quality
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // so2
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // mCityName
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // cityId
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // localTime
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // utcTime
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // code
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // description
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // codeDay
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // codeNight
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // descriptionDay
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // descriptionNight
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // sendibleTemp
+            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // humidity
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // precipitation
+            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // airPressure
+            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // temperature
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // visibility
+            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // windDegree
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // windDirection
+            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // windPower
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33) // windSpeed
         );
         return entity;
     }
@@ -515,39 +515,39 @@ public class WeatherModelDao extends AbstractDao<WeatherModel, Long> {
     @Override
     public void readEntity(Cursor cursor, WeatherModel entity, int offset) {
         entity.setMId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setMCityName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setMCityId(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setMLocalTime(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setMUtcTime(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setMCode(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setMDescription(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setMCodeDay(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setMCodeNight(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setMDescriptionDay(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setMDescriptionNight(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setMSendibleTemp(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setMHumidity(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setMPrecipitation(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setMAirPressure(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setMTemperature(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setMVisibility(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setMWindDegree(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setMWindDirection(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setMWindPower(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setMWindSpeed(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setMAqi(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setMCO(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setMNO2(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setMO3(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setMPM10(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
-        entity.setMPM25(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
-        entity.setMQuality(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
-        entity.setMSO2(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setMLevel(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setMStatus(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setMTitle(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
-        entity.setMWarningDescription(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setMType(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
+        entity.setLevel(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setStatus(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setWarningDescription(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setType(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setAqi(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCo(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setNo2(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setO3(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setPm10(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setPm25(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setQuality(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setSo2(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setMCityName(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setCityId(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setLocalTime(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setUtcTime(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setCode(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setDescription(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setCodeDay(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setCodeNight(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setDescriptionDay(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setDescriptionNight(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setSendibleTemp(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setHumidity(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
+        entity.setPrecipitation(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
+        entity.setAirPressure(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
+        entity.setTemperature(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
+        entity.setVisibility(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
+        entity.setWindDegree(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
+        entity.setWindDirection(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setWindPower(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
+        entity.setWindSpeed(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
      }
     
     @Override
