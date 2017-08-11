@@ -15,6 +15,7 @@
  */
 package com.koma.weather.widget;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
@@ -27,7 +28,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.koma.weather.R;
-import com.koma.weather.util.LogUtils;
 import com.koma.weather.util.Utils;
 
 import java.text.DateFormat;
@@ -78,9 +78,12 @@ public class SunriseSunsetView extends View {
 
     private Path mPath = new Path();
 
-    private float offsetX;
-    private float offsetY;
+    private float mOffsetX;
+    private float mOffsetY;
 
+    private float mAngle;
+
+    private ValueAnimator mValueAnimator;
 
     public SunriseSunsetView(Context context) {
         this(context, null);
@@ -102,10 +105,6 @@ public class SunriseSunsetView extends View {
         } else {
             mDateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
         }
-
-        mCurrentTime = mDateFormat.format(new Date());
-
-        LogUtils.i("", "mCurrentTime :" + mCurrentTime);
     }
 
     @Override
@@ -117,14 +116,40 @@ public class SunriseSunsetView extends View {
         mArcPathEffect = new DashPathEffect(new float[]{mArcIntervalSize, 2 + mArcIntervalSize,
                 mArcIntervalSize, 2 + mArcIntervalSize}, 0);
         mSunPathEffect = new DashPathEffect(new float[]{mSunIntervalSize, 4 + mSunIntervalSize,
-                mSunIntervalSize, +4 + mSunIntervalSize}, 0);
+                mSunIntervalSize, 4 + mSunIntervalSize}, 0);
     }
 
     public void setTime(String sunriseTime, String sunsetTime) {
         mSunriseTime = sunriseTime;
         mSunsetTime = sunsetTime;
 
-        postInvalidateOnAnimation();
+        mCurrentTime = mDateFormat.format(new Date());
+        try {
+            final long start = mDateFormat.parse(mSunriseTime).getTime();
+            final long end = mDateFormat.parse(mSunsetTime).getTime();
+            final long current = mDateFormat.parse(mCurrentTime).getTime();
+            mValueAnimator = ValueAnimator.ofInt((int) start, (int) current);
+            mValueAnimator.setDuration(1000);
+            mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    long current = (int) animation.getAnimatedValue();
+                    if (current < start) {
+                        mAngle = 0;
+                    }
+                    float factor = 1.0f * (current - start) / (end - start);
+                    if (factor > 1) {
+                        mAngle = 180;
+                    } else {
+                        mAngle = factor * 180;
+                    }
+                    postInvalidateOnAnimation();
+                }
+            });
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mValueAnimator.start();
     }
 
     @Override
@@ -165,48 +190,28 @@ public class SunriseSunsetView extends View {
         mArcRectF.set(left, top, right, bottom);
 
         PointF offsetPoint = calcArcEndPointXY(mArcRectF.centerX(), mArcRectF.centerY(), mArcRectF.width() / 2, 0);
-        offsetX = offsetPoint.x - left;
-        offsetY = mArcRectF.centerY() - offsetPoint.y;
+        mOffsetX = offsetPoint.x - left;
+        mOffsetY = mArcRectF.centerY() - offsetPoint.y;
 
-        mArcRectF.top += offsetY;
-        mArcRectF.bottom += offsetY;
+        mArcRectF.top += mOffsetY;
+        mArcRectF.bottom += mOffsetY;
 
         canvas.drawArc(mArcRectF, 180, 180, false, mArcPaint);
 
-        int angle = 0;
-        try {
-            long start = mDateFormat.parse(mSunriseTime).getTime();
-            long end = mDateFormat.parse(mSunsetTime).getTime();
-
-            long current = mDateFormat.parse(mCurrentTime).getTime();
-            LogUtils.i("", "current : " + current + ",start :" + start + ",end :" + end);
-            if (current < start) {
-                return;
-            }
-            float factor = 1.0f * (current - start) / (end - start);
-            if (factor > 1) {
-                angle = 180;
-            } else {
-                angle = (int) (factor * 180);
-            }
-        } catch (ParseException e) {
-            LogUtils.e("", "error : " + e.toString());
-            e.printStackTrace();
-        }
-
         mArcPaint.setStyle(Paint.Style.FILL);
         mArcPaint.setColor(mArcSolidColor);
-        canvas.drawArc(mArcRectF, 180, angle, false, mArcPaint);
+        canvas.drawArc(mArcRectF, 180, mAngle, false, mArcPaint);
 
-        PointF point = calcArcEndPointXY(mArcRectF.centerX(), mArcRectF.centerY(), mArcRectF.width() / 2, angle);
+        PointF point = calcArcEndPointXY(mArcRectF.centerX(), mArcRectF.centerY(), mArcRectF.width() / 2, mAngle);
 
         //因为计算损失精度,所以这里用1像素来微调
-        mPath.moveTo(mArcRectF.left - 1 + offsetX, mArcRectF.centerY() - offsetY);// 此点为多边形的起点
+        mPath.moveTo(mArcRectF.left - 1 + mOffsetX, mArcRectF.centerY() - mOffsetY);// 此点为多边形的起点
         mPath.lineTo(point.x - 1, point.y - 1);
-        mPath.lineTo(point.x - 1, mArcRectF.centerY() - offsetY);
+        mPath.lineTo(point.x - 1, mArcRectF.centerY() - mOffsetY);
         mPath.close(); // 使这些点构成封闭的多边形
         canvas.drawPath(mPath, mArcPaint);
-        if (angle < 180) {
+
+        if (mAngle < 180) {
             mSunPaint.setColor(mSunColor);
 
             mSunPaint.setStyle(Paint.Style.FILL);
