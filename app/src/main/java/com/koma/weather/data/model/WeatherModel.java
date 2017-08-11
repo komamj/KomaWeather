@@ -15,8 +15,8 @@
  */
 package com.koma.weather.data.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.PrimaryKey;
+//import android.arch.persistence.room.ColumnInfo;
+//import android.arch.persistence.room.PrimaryKey;
 
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Transient;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by koma on 7/25/17.
  */
-@android.arch.persistence.room.Entity(tableName = "weather")
+//@android.arch.persistence.room.Entity(tableName = "weather")
 public class WeatherModel {
     //alarmsinfo
     /**
@@ -82,8 +82,8 @@ public class WeatherModel {
     /**
      * id
      */
-    @PrimaryKey
-    @ColumnInfo(name = "city_id")
+   /* @PrimaryKey
+    @ColumnInfo(name = "city_id")*/
     private String cityId;
 
     @Property(nameInDb = "local_time")

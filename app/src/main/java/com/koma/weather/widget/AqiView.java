@@ -92,7 +92,6 @@ public class AqiView extends View {
             return;
         }
 
-
         canvas.translate(w / 2f, h / 2f);
 
         canvas.save();
@@ -103,7 +102,7 @@ public class AqiView extends View {
         rectF.set(-aqiArcRadius, -aqiArcRadius, aqiArcRadius, aqiArcRadius);
 
         // draw aqi restPercent arc
-        float startAngle = -180f;
+        float startAngle = -135f;
         for (int i = 0; i <= 5; i++) {
             mPaint.setColor(mIndicatorColors[i]);
             if (i == 4) {
